@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style>
+
+ nav {
+    width: 100%;
+    height: 60px;
+    display: block;
+    background-color: #0d2958;
+    background-color: rgba(13, 41, 88, .8);
+    
+    letter-spacing: 2px;
+    font-weight: bold;
+   
+   z-index: 9999;
+}
+
+.nav a{
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 18px;
+    width: 100%;
+    transition: 0.5s ease-in-out;
+    font-family: 'akkurat-light';
+}
+
+</style>
+ <meta charset="UTF-8">
+  <title>Custom User Model</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header"> 
+      <a class="navbar-brand" style="font-size: 1.8em !important;" href="/">
+        <b>Account Manager </b>
+      </a>
+     </div>
+
+              <div class="nav navbar-nav" style="		display: inline;">
+      <li class="active"><a href="/">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Transactions <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/transactions/deposit">Deposit Money</a></li>
+          <li><a href="/transactions/withdraw">Withdraw Money</a></li>
+          <li><a href="/transactions/tranfer">Transfer Money</a></li>
+        </ul>
+      </li>
+       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> My account <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/transactions/summary">Mini statement</a></li>
+          <li><a href="/balance">Balance Enquiry</a></li>
+          <li><a href="/transactions/detail">Transaction History</a></li>
+          <li><a href="/accounts">Add Account</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Settings <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'password_change' %}">Password change</a></li>
+          
+        </ul>
+      </li>
+    
+      <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
+          
+  </div>
+    </div>
+  </nav>
+ {% else %}
+ <nav class="navbar">
+  <div class="container">
+    <div class="navbar-header"> 
+     
+     </div>
+
+              <div class="nav navbar-nav " style="display: inline;">
+      <li class="active"><a href="/">Home</a></li>
+  <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Log In</a></li> |
+  <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+   </div>
+    </div>
+  </nav>
+        {% endif %}
+
+  {% block content %}
+  {% endblock %}
+  
+</body>
+
+</html>

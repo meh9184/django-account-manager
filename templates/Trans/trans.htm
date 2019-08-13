@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+
+{% block title %} Transacton History {% endblock %}
+
+{% block content %}
+<!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+      <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+        .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color:#4262a5;
+        color: white;
+        text-align: center;
+        font-size: 0.8em;
+     }
+            .button {
+                      background-color:#4262a5;
+                      border: none;
+                      border-radius: 2px;
+                      color: white;
+                      padding: 5px 62px;
+                      text-align: center;
+                      text-decoration: none;
+                      display: inline-block;
+                      font-size: 16px;
+                      margin: auto;
+                      cursor: pointer;
+                    }
+            .body1{
+                margin: auto;
+                 width: 900px;
+                border: 1px solid #4262a5 ;
+                }
+        .center {
+            background-color:#4262a5;
+                      border: none;
+                      
+                      color: white;
+                      text-align: center;
+                      text-decoration: none;
+                      display: inline-block;
+                      font-size: 16px;
+                      margin: auto;}
+           .center1 {
+            margin: auto;
+            text-align: center;
+           width: 100%;
+           font-size: 16px;
+           }
+         </style>
+ </head>
+<body>
+        <div class="center1">
+                <div class="body1">
+<br>
+    <div class="mx-auto" style="width: 750px;">
+        <div style="background-color:#4262a5;  width:100%; float:left;">
+                <div class="center">             
+         <h2>Transaction Details</h2>
+     </div>
+     </div>
+     <hr>
+     <br>
+     <br>
+     <div class="mx-auto" style="align-content: left; ">
+    <b>Deposit details</b><hr>
+    <table>
+        <tr>
+          <th>Amount</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th>Time of the Transaction</th> 
+        </tr>
+        {% for i in dep_obj %}
+            <tr>
+                <td>+{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td> &nbsp;</td>
+                <td> &nbsp;</td>
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <br>
+    <b>Withdraw Details</b><hr>
+    <table>
+        <tr>
+          <th>Amount</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>        
+          <th>Time of the Transaction</th> 
+        </tr>
+        {% for i in with_obj %}
+            <tr>
+                <td>-{{i.amount}}</td>
+                <td> &nbsp;</td>
+                <td> &nbsp;</td>
+                <td> &nbsp;</td>
+
+                <td>{{i.timestamp}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <br>
+    <b>Debit Transfers</b><hr>
+    <table>
+        <tr>
+          <th>Sent to</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th>Account number</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+
+          <th>Amount</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+          <th> &nbsp;</th>
+
+          <th>Time of the Transaction</th> 
+        </tr>
+        {% for i in Td_obj %}
+        <tr>
+            <td>{{i.user}}</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+
+            <td align="center">{{i.receiver_id}}</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+
+            <td>-{{i.amount}}</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+
+            <td>{{i.timestamp}}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+<b>Credit Transfers</b><hr>
+<table>
+    <tr>
+      <th>From</th>
+      <th> &nbsp;</th>
+      <th> &nbsp;</th>
+      <th> &nbsp;</th>
+
+      <th>Account number</th>
+      <th> &nbsp;</th>
+      <th> &nbsp;</th>
+      <th> &nbsp;</th>
+
+      <th>Amount</th>
+      <th> &nbsp;</th>
+      <th> &nbsp;</th>
+      <th> &nbsp;</th>
+
+      <th>Time of the Transaction</th> 
+    </tr>
+    {% for i in Tc_obj %}
+        <tr>
+            <td>{{i.user}}</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+
+            <td align="center">{{i.receiver_id}}</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td>+{{i.amount}}</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            <td>{{i.timestamp}}</td>
+
+        </tr>
+    {% endfor %}
+    </table>
+    <br>
+    <br>
+    <a href="/">Go back</a>
+</div>
+<br>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+{% endblock %}
+
+</html>
