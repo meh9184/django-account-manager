@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.views.generic.base import TemplateView
+from django.core.exceptions import ValidationError
 
 from .models import CustomUser, Account 
 from .forms import CustomUserCreationForm,PasswordChangeForm, AccountForm
@@ -42,6 +43,7 @@ def change_password(request):
 class Home(TemplateView):
 
     def get(self, request, *args, **kwargs):
+
         context={}
         
         is_authenticated = request.user.is_authenticated
@@ -71,8 +73,13 @@ class Home(TemplateView):
 def account_view(request):
     form = AccountForm(request.POST or None)
 
+    if (request.user.is_authenticated == True) and \
+        (Account.objects.filter(user=request.user).count() >= 5):
+        raise ValidationError("Can only create 5 instance of Account Model")
+
+
     if form.is_valid():
-        
+
         account = form.save(commit=False)
         account.user = CustomUser.objects.get(email=request.user)
 

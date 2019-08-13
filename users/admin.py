@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from .models import CustomUser, Account
 
 
 class CustomUserAdmin(UserAdmin):
@@ -25,4 +25,17 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
+# class AccountAdmin(admin.ModelAdmin):
+#     """
+#     Don't allow addition of more than one model instance in Django admin
+#     See: http://stackoverflow.com/a/12469482
+#     """
+#     def has_add_permission(self, request):
+#         if self.model.objects.filter().count() > 5:
+#             return False
+#         else:
+#             return True
+
+
 admin.site.register(CustomUser, CustomUserAdmin)
+# admin.site.register(Account, AccountAdmin)

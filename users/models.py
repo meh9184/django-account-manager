@@ -84,3 +84,13 @@ class Account(models.Model):
     limit_daily = property(_get_limit_daily)
 
 
+    # def clean(self):
+    #     """
+    #     Throw ValidationError if you try to save more than one model instance
+    #     See: http://stackoverflow.com/a/6436008
+    #     """
+    #     model = self.__class__
+    #     if (model.objects.count() > 5 and
+    #             self.id != model.objects.get().id):
+    #         raise ValidationError(
+    #             "Can only create 5 instance of %s." % model.__name__)
