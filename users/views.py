@@ -34,10 +34,10 @@ def reset_limit():
         elif account.account_type == '적금':
             account.limit_once = 0
             account.limit_daily = 0
-            
+
         account.save()
     
-    print(' 리셋 백그라운드 테스크 실행')
+    # print(' 리셋 백그라운드 테스크 실행')
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
