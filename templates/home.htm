@@ -41,11 +41,12 @@
     margin: 0px 5px 0px 0px;
     float: right;
   }
-  .create-account {
+  .mgr-account {
     float: right;
   }
-  .create-account .btn{
+  .mgr-account .btn{
     border-color:white;
+    margin-left: 10px;
   }
   .main-btn a{
     width: 100%;
@@ -64,9 +65,12 @@
           <div class="site-heading">
             <h3 class=" site-heading my-4 mt-3 text-white"> Welcome, {{ user.full_name }} </h3>
             <p class="text-light">계좌는 최대 5개 까지 개설 가능합니다. &nbsp</p>
-            <div class="create-account">
-                <a href="/accounts" class="btn btn-primary">계좌 생성</a>
+            
+            <div class="mgr-account">
+                <a href="/accounts" class="btn btn-primary">계좌 생성</a>  
+                <a href="/accounts/modify_main" class="btn btn-success">주 계좌 변경</a>
             </div>
+            
           </div>
         </div>
       </div>

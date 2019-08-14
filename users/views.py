@@ -186,3 +186,18 @@ def account_proc(request, account_no):
     account.save()
 
     return redirect("home")
+
+
+def account_delete(request, account_no):
+        
+    account = Account.objects.get(account_no=account_no)
+
+    # 만약 삭제하려는 계좌가 주 계좌였다면
+    if account.is_main_account:
+        # 해당 사용자의 주 계좌를 공백으로 변경
+        account.user.main_account_no = ''
+        account.user.save()
+
+    account.delete()
+
+    return redirect("home")

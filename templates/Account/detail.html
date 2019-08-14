@@ -44,6 +44,12 @@
         border-right: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
     }
+    .btn {
+        width: 180px;
+        font-size: 13px;
+        /* margin-right: 150px; */
+        /* float: right; */
+    }
 </style>
 
 <header class="masthead" >
@@ -107,6 +113,11 @@
                 <td>{{ account.limit_daily }}</td>
             </tr>
         </table>
+
+        {% with "/accounts/delete/"|add:account.account_no as account_no %}
+            <a href= {{ account_no }} class="btn btn-danger">계좌 삭제</a>
+        {% endwith %}
+
       </div>
     </div>
   </div>
