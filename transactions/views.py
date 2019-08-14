@@ -9,8 +9,9 @@ from .models import Withdraw,Deposit,Transfer
 
 from users.models  import CustomUser, Account
 
-def deposit_view(request):
-    form = DepositForm(request.POST or None)
+def deposit_view(request, account_no):
+
+    form = DepositForm(request.POST or None, account_no=account_no)
 
     if form.is_valid():
         deposit = form.save(commit=False)
@@ -32,8 +33,8 @@ def deposit_view(request):
     }
     return render(request, "DW/dw.htm", context)
 
-def withdraw_view(request):
-    form = WithdrawForm(request.POST or None)
+def withdraw_view(request, account_no):
+    form = WithdrawForm(request.POST or None, account_no=account_no)
 
     if form.is_valid():
         withdraw = form.save(commit=False)
@@ -65,8 +66,8 @@ def withdraw_view(request):
     }
     return render(request, "DW/dw.htm", context)
 
-def transfer_view(request):
-    form = TransferForm(request.POST or None)
+def transfer_view(request, account_no):
+    form = TransferForm(request.POST or None, account_no=account_no)
 
     if form.is_valid():
         transfer = form.save(commit=False)
@@ -92,7 +93,7 @@ def transfer_view(request):
 
         # 받는 계좌의 잔고를 누산
         receiver_obj = Account.objects.get(account_no=transfer.account_no_to)
-        receiver_obj.balance += (transfer.amount + commission)
+        receiver_obj.balance += (transfer.amount)
 
         # 추가 정보 저장
         transfer.receiver_id = receiver_obj.user.id

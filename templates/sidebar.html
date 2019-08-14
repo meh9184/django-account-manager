@@ -1,0 +1,53 @@
+{% block sidebar %}
+
+<style>
+        .card{
+            box-shadow: 0 16px 48px #E3E7EB;
+        }
+        .card-text-sidebar {
+            font-size: 12px;
+            color: gray;
+        }
+        .btn{
+            float: right;
+        }
+       
+</style>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+<div class="card my-4">
+    <h5 class="card-header">Recent Transactions</h5>
+    
+    
+    <div class="card-body">
+        
+        {% for i in dep_obj reversed%}
+            <h6>+{{i.amount}} 원</h6>
+            <p class="card-text-sidebar"> 입금 &rarr; 내 {{i.account_bank}}계좌</p>
+        {% endfor %}
+
+        {% for i in with_obj reversed %}
+            <h6>-{{i.amount}} 원</h6>
+            <p class="card-text-sidebar"> 내 {{i.account_bank}}계좌 &rarr; 출금</p>        
+        {% endfor %}
+
+        {% for i in Td_obj reversed %}
+            <h6>-{{i.amount}} 원</h6>
+            <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
+        {% endfor %}
+
+        {% for i in Tc_obj reversed %}
+            <h6>+{{i.amount}} 원</h6>
+            <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
+        {% endfor %}
+
+        <a href="#" class="btn btn-primary">상세 조회</a>
+
+        
+    </div>
+
+</div>
+</div>
+
+{% endblock sidebar %}

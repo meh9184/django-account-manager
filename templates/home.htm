@@ -3,329 +3,171 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
     
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    background-color: #fdfdfd;
+  }
 
-    <style>
-      .container {
-        position: relative;
-        align-items: center;
-      }
-
-      .contents {
-        font-size: 15px;
-        position: relative;
-        text-align: center;
-      }
-    </style>
-    <style>
-      .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color:#4262a5;
-        color: white;
-        text-align: center;
-        font-size: 0.8em;
-      }
-      .button {
-        background-color:#4262a5;
-        border: none;
-        border-radius: 2px;
-        color: white;
-        padding: 5px 62px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: auto;
-        cursor: pointer;
-      }
-      .body1{
-        margin: auto;
-          width: 900px;
-        border: 1px solid #4262a5 ;
-      }
-      .center {
-        background-color:#4262a5;
-        border: none;
-        color: white;
-        text-align: left;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 12px;
-        margin: auto;
-      }
-      .center1 {
-        margin: auto;
-        text-align: center;
-        width: 100%;
-        font-size: 12px;
-      }
-      table {
-        border-spacing: 0;
-        width: 750px;
-        border: 1px solid #ddd;
-      }           
-      th, td {
-        text-align: left;
-        padding: 10px;
-      }     
-      tr:nth-child(even) {
-        background-color: #f2f2f2
-      }
-    </style>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous">
-    </script>
-  </head>
+  .head_text{
+    color: white;
+  }
+  .card{
+    box-shadow: 0 16px 48px #E3E7EB;
+  }
+  .left{
+    width: 30%;
+    float: left;
+    display: block;
+  }
+  .right{
+    width: 70%;
+    height: 100%;
+    float: right;
+    display: block;
+  }
+  .card-title {
+    font-size: 20px;
+  }
+  .card-title a{
+    font-size: 8px;
+  }
+  .btn {
+    font-size: 12px;
+  }
+  .right .btn {
+    margin: 0px 5px 0px 0px;
+    float: right;
+  }
+  .create-account {
+    float: right;
+  }
+  .create-account .btn{
+    border-color:white;
+  }
+</style>
 
 
+{% if user.is_authenticated %}
 
-  <body>
+  <header class="masthead" >
+    <div class="overlay"></div>
     <div class="container">
-      <div class="contents">
-
-        {% if user.is_authenticated %}
-        
-          <br><br> 
-          Welcome, <b>{{ user.full_name }}</b> 
-          <br><br> 
-
-          <hr>
-
-          <!-- 보유 계좌 조회 -->
-          <div class="center1">
-            <br>
-            <div class="mx-auto" style="width: 750px;">
-              <div style="background-color:#4262a5;  width:100%; float:left;">
-                <div class="center">             
-                  <h2> 계좌 </h2>
-                </div>
-              </div>
-              
-              <br><br>
-              
-              <br>
-              <table id="tab">
-                <tr>
-                  <th>은행</th> 
-                  <th> &nbsp;</th>
-                  <th>계좌 번호</th>
-                  <th> &nbsp;</th>
-                  <th>종류 </th>
-                  <th> &nbsp;</th>
-                  <th>잔액</th>
-                  <th> &nbsp;</th>
-                  <th>주 계좌</th>
-                </tr>
-                
-                {% for i in account_obj %}
-                  <tr>
-                    <td>{{i.bank}}</td>
-                    <td> &nbsp;</td>                    
-                    <td>{{i.account_no}}</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.account_type}}</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.balance}} 원</td>
-                    <td> &nbsp;</td>
-
-                    {% if i.is_main_account %}
-                      <td> V </td>
-                    {% else %}
-                      <td>&nbsp;</td>
-                    {% endif %}
-                  </tr>
-                {% endfor %}
-              </table>
-              
+      <div class="row">
+        <div class=" col-md-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h3 class=" site-heading my-4 mt-3 text-white"> Welcome, {{ user.full_name }} </h3>
+            <p class="text-light">계좌는 최대 5개 까지 개설 가능합니다. &nbsp</p>
+            <div class="create-account">
+                <a href="/accounts" class="btn btn-primary">계좌 생성</a>
             </div>
-            
-            <br>
-            
           </div>
-
-
-
-          <hr>
-
-          <!-- 최근 거래 내역 -->
-          <div class="center1">
-            <br>
-            <div class="mx-auto" style="width: 750px;">
-              <div style="background-color:#4262a5;  width:100%; float:left;">
-                <div class="center">             
-                  <h2> 최근 거래 내역 </h2>
-                </div>
-              </div>
-              
-              <br><br>
-              
-              <h3>Last 5 Transactions:</h3>
-              <br>
-              <table id="tab">
-                <tr>
-                  <th>내 계좌</th>
-                  <th> &nbsp;</th>
-                  <th>계좌 번호</th>
-                  <th> &nbsp;</th>
-                  <th>금액</th>
-                  <th> &nbsp;</th>
-                  <th>거래 형태</th>
-                  <th> &nbsp;</th>
-                  <th>거래 날짜</th> 
-                  <th> &nbsp;</th>
-                  <th>거래 시간</th>
-                </tr>
-                
-                {% for i in dep_obj reversed%}
-                  <tr>
-                    <td>내 {{i.account_bank}} 계좌</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.account_no}}</td>
-                    <td> &nbsp;</td>
-                    <td>+{{i.amount}} 원</td>
-                    <td> &nbsp;</td>
-                    <td>입금</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}}</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|time:"H:i:s"}}</td>
-                  </tr>
-                {% endfor %}
-                {% for i in with_obj reversed %}
-                  <tr>
-                    <td>내 {{i.account_bank}} 계좌</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.account_no}}</td>
-                    <td> &nbsp;</td>
-                    <td>-{{i.amount}} 원</td>
-                    <td> &nbsp;</td>
-                    <td>출금</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}}</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|time:"H:i:s"}}</td>
-                  </tr>
-                {% endfor %}
-                {% for i in Td_obj reversed %}
-                  <tr>
-                    <td>내 {{i.account_bank_from}} 계좌</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.account_no_from}}</td>
-                    <td> &nbsp;</td>
-                    <td>-{{i.amount}} 원</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.receiver_name}}에게 송금</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}}</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|time:"H:i:s"}}</td>
-                  </tr>
-                {% endfor %}
-                {% for i in Tc_obj reversed %}
-                  <tr>
-                    <td>내 {{i.account_bank_to}} 계좌</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.account_no_to}}</td>
-                    <td> &nbsp;</td>
-                    <td>+{{i.amount}} 원</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.user_name}}(으)로부터 송금</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|date:"SHORT_DATE_FORMAT"}}</td>
-                    <td> &nbsp;</td>
-                    <td>{{i.timestamp|time:"H:i:s"}}</td>
-                  </tr>
-                {% endfor %}
-              </table>
-              <script>
-                var i,j,p,q,temp,t,a,b,d1,d2,t1,t2;
-                function convertDate(d) {
-                  a= d.split("/");
-                  return (a[2]+a[1]+a[0]);
-                }
-                
-                function convertTime(t){
-                  b=t.split(":");
-                  return (b[0]+b[1]+b[2]);
-                }
-                
-                t=document.getElementById("tab");
-                
-                for(i=1;i<t.rows.length;i++)
-                {
-                  for(j=1;j<t.rows.length-i;j++)
-                  {
-                    
-                    d1=convertDate(t.rows.item(j).cells[4].innerHTML);
-                    d2=convertDate(t.rows.item(j+1).cells[4].innerHTML);
-                    t1=convertTime(t.rows.item(j).cells[6].innerHTML);
-                    t2=convertTime(t.rows.item(j+1).cells[6].innerHTML);
-                
-                    p=d1+""+t1;
-                    q=d2+""+t2;
-                
-                    temp=t.rows.item(j).innerHTML;
-                
-                    if((p-q)<0)
-                    {
-                      t.rows.item(j).innerHTML=t.rows.item(j+1).innerHTML;
-                      t.rows.item(j+1).innerHTML=temp;
-                    }
-                  }
-                }
-              </script>
-              <script>
-                function myFunction() {
-                  var x = document.getElementById("tab").rows.length;
-                  for(var i=0;i<=x;i++){
-                    if(i>5){
-                      document.getElementById("tab").rows[i].innerHTML= "";
-                    }
-                    
-                  }
-                }
-                myFunction()
-              </script>
-              
-            </div>
-            
-            <br>
-            
-          </div>
-          <br><br>
-
-
-
-        {% else %}
-        
-          <p>Login or Register to use our Services</p>
-          <a href="{% url 'login' %}">Log In</a> |
-          <a href="{% url 'signup' %}">Sign Up</a> 
-
-        {% endif %}
-
+        </div>
       </div>
     </div>
+  </header>
+      
+  <div class="container">
+    <div class="row">
 
-  </body>
+      <!-- Blog Entries Column -->
+      <div class="col-md-8 mt-3 left">
+        {% for account in account_obj %}
+          <div class="card mb-4" >
+            <div class="card-body grid">
+              
+              <div class="grid-tem left">
+                <p class="card-title">
+                  {{ account.bank }} 계좌 
+                  <a class="card-text text-muted">{{ account.account_type }}</a>
+                </p>
+                <p class="card-text text-muted h6">{{ account.account_no }}</p>
+                <p class="card-text">{{ account.balance }} 원</p>
+              </div>
+              
+              <div class="grid-tem right">
+                <div style="position: absolute; bottom: 20px; right: 20px">
 
-</html>
-{% endblock %}
+                  <a href="/accounts/detail" class="btn btn-primary">조회</a>
+
+                  {% with "/transactions/withdraw/"|add:account.account_no as account_no %}
+                    <a href= {{ account_no }} class="btn btn-primary">출금</a>
+                  {% endwith %}
+
+                  {% with "/transactions/deposit/"|add:account.account_no as account_no %}
+                    <a href= {{ account_no }} class="btn btn-primary">입금</a> 
+                  {% endwith %}
+
+                  {% with "/transactions/transfer/"|add:account.account_no as account_no %}
+                    {% if account.daily_transfer_number <= 0 %}
+                      <a href= {{ account_no }} class="btn btn-danger">이체</a>
+                    {% else %}
+                      <a href= {{ account_no }} class="btn btn-primary">이체</a>
+                    {% endif %}
+                  {% endwith %}
+
+                </div>
+
+                {% if account.is_main_account %}
+                  <div style="position: absolute; top: 20px; right: 20px">
+                    <div class="btn btn-success">주 계좌</div>
+                  </div>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      {% block sidebar %}
+      {% include 'sidebar.html' %}
+      {% endblock sidebar %}
+
+      
+      
+
+    </div>
+  </div>
+
+{% else %}
+  <header class="masthead" >
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h3 class=" site-heading my-4 mt-3 text-white"> Welcome Account Manager </h3>
+            <p class="text-light">계좌를 추가하고 입금, 출금, 이체를 수행해보세요! &nbsp</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+      
+  <div class="container">
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-12 mt-3">
+        <div class="card mb-8">
+          <div class="card-body" style="position: relative; padding: 100px 0px 60px 0px;">
+        
+            <div style="position: absolute; top: 50%; left: 40%">
+              <!-- <h2 class="card-title">Login or Register to use Services</h2> -->
+              <a href="{% url 'signup' %}" class="btn btn-primary">회원가입</a>
+              <a href="{% url 'login'  %}" class="btn btn-primary">로그인</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+{% endif %}
+
+
+{%endblock%}
+

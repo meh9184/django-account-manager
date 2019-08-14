@@ -1,100 +1,57 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
-{% block title %} {{ title }} {% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
-        <style>
+<style>
+  body {
+    font-family: "Roboto", sans-serif;
+  
+  }
+  button {
+    background-color: #3398E1;
+    color: white;
+    padding: 5px 40px 5px 40px;
+  }
+  .card-body {
+    text-align: center;
+  }
+</style>
 
-            .button {
-                background-color:#4262a5;
-                border: none;
-                border-radius: 2px;
-                color: white;
-                padding: 5px 62px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: auto;
-                cursor: pointer;
-            }
-            .body1{
-                margin: auto;
-                width: 300px;
-                border: 1px solid #4262a5 ;
-            }
-            .center {
-            background-color:#4262a5;
-                border: none;
-                border-radius: 2px;
-                color: white;
-                padding: 4px 48px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: auto;
-            }
-            .center1 {
-                margin: auto;
-                text-align: center;
-                width: 100%;
-                padding: 4px 60px;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="center1">
-            <div class="body1">
-                <br>
-                <div class="mx-auto" style="width: 150px;">
-                    <div style="background-color:#4262a5;  width:100%; float:left;">
-                        <div class="center">             
-                            <h2>{{ title }}</h2>
-                        </div>
-                    </div>
-                    <hr>
-                    <br>
-                    <br>
-                    <br>
-
-                    <div class="mx-auto" style="align-content: middle; color:rgba(13, 41, 88, .8); font-size: 16px;">
-
-                    <form method="POST" action="" >
-
-                        {% csrf_token %}
-                        {{ form }}
-                        <br><br>
-
-                        <button type="submit" class="button" style="background-color: #4262a5; color: white;"  value='{{ title }}'>
-                            <b>Submit</b>
-                        </button>
-                        <br><br>
-
-                        <a href="/">Go back</a>
-
-                    </form>
-                </div>
-                <br><br>
-            </div>
+<header class="masthead" >
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-white"> {{title}} </h3>
+          <p class="text-light"></p>
         </div>
-    </body>
-    {% endblock %}
-</html>
+      </div>
+    </div>
+  </div>
+</header>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 card mb-4  mt-3 left  top">
+      <div class="card-body">
+        
+        <br><br>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="button">
+            Submit
+          </button>
+          <br>
+
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
