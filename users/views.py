@@ -94,9 +94,24 @@ def account_view(request):
 
         # 해당 사용자의 주 계좌 번호를 변경
         account.user.main_account_no = account.account_no
+
+        # 출금 한도량 설정
+        if account.account_type == '일반':
+            account.limit_once = 300000
+            account.limit_daily = 300000
+
+        elif account.account_type == '급여':
+            account.limit_once = 10000000
+            account.limit_daily = 100000000
+            
+        elif account.account_type == '적금':
+            account.limit_once = 0
+            account.limit_daily = 0
+
+
         account.user.save()
         account.save()
-        
+
         messages.success(request, 'You Created Account .'.format(account.account_no))
 
         return redirect("home")

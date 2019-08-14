@@ -47,6 +47,8 @@ class Account(models.Model):
     balance                 = models.IntegerField(default=0)
     daily_transfer_number   = models.IntegerField(default=3)
     is_main_account         = models.BooleanField(default=False)
+    limit_once              = models.IntegerField(default=0)
+    limit_daily             = models.IntegerField(default=0)
 
     bank_list = (
         ('토스', '토스'),
@@ -65,23 +67,35 @@ class Account(models.Model):
     )
     account_type = models.CharField(max_length=10, choices=account_type_list)
 
-    def _get_limit_once(self):
-        if self.account_type == '일반':
-            return 300000
-        elif self.account_type == '급여':
-            return 10000000
-        elif self.account_type == '적금':
-            return 0
-    limit_once = property(_get_limit_once)
+
+    # @property
+    # def limit_once(self):
+    #     if self.account_type == '일반':
+    #         return 300000
+    #     elif self.account_type == '급여':
+    #         return 10000000
+    #     elif self.account_type == '적금':
+    #         return 0
+    # limit_once = property(_get_limit_once)
     
-    def _get_limit_daily(self):
-        if self.account_type == '일반':
-            return 300000
-        elif self.account_type == '급여':
-            return 100000000
-        elif self.account_type == '적금':
-            return 0
-    limit_daily = property(_get_limit_daily)
+    # @limit_once.setter
+    # def limit_once(self, value):
+    #     self._limit_once = value
+
+
+    # @property
+    # def limit_daily(self):
+    #     if self.account_type == '일반':
+    #         return 300000
+    #     elif self.account_type == '급여':
+    #         return 100000000
+    #     elif self.account_type == '적금':
+    #         return 0
+    # limit_daily = property(_get_limit_daily)
+
+    # @limit_daily.setter
+    # def limit_daily(self, value):
+    #     self.limit_daily = value
 
 
     # def clean(self):

@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from django.core.exceptions import ValidationError
+
 from .forms import DepositForm,WithdrawForm,TransferForm
-from users.models  import CustomUser, Account
 from .models import Withdraw,Deposit,Transfer
+
+from users.models  import CustomUser, Account
 
 def deposit_view(request):
     form = DepositForm(request.POST or None)
@@ -33,18 +36,28 @@ def withdraw_view(request):
     form = WithdrawForm(request.POST or None)
 
     if form.is_valid():
-        withdraw= form.save(commit=False)
+        withdraw = form.save(commit=False)
 
         withdraw.account = Account.objects.get(account_no=withdraw.account_no)
 
-        withdraw.user_name = withdraw.account.user.full_name
-        withdraw.save()
-        
-        withdraw.account.balance-=withdraw.amount
-        withdraw.account.save()
+        # 1회 한도 초과되는지 검토
+        if withdraw.account.limit_once < withdraw.amount:
+            raise ValidationError("Can only withdraw up to . at a time".format(withdraw.account.limit_once))
+        # 1일 한도 초과되는지 검토
+        elif (withdraw.account.limit_daily - withdraw.amount) < 0:
+            raise ValidationError("Expire daily withdraw limit")
+        else:
+            # 1일 제한량에서 amount 만큼 감소한 후 출금 진행
+            withdraw.account.limit_daily -= withdraw.amount
+            
+            withdraw.user_name = withdraw.account.user.full_name
+            withdraw.save()
+            
+            withdraw.account.balance-=withdraw.amount
+            withdraw.account.save()
 
-        messages.success(request, 'You Have Withdrawn .'.format(withdraw.amount))
-        return redirect("home")
+            messages.success(request, 'You Have Withdrawn .'.format(withdraw.amount))
+            return redirect("home")
 
     context = {
         "title": "Withdraw",
