@@ -18,13 +18,14 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
 from transactions.views import transcations_detail, transcations_summary
-from users.views import Home, account_view
+from users.views import Home, account_view, account_detail
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('accounts/', account_view),
+    path('accounts/detail/<account_no>', account_detail),
     path('transactions/', include('transactions.urls')),
     path('transactions/detail/', transcations_detail),
     path('transactions/summary/', transcations_summary),

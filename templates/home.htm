@@ -50,7 +50,6 @@
   .main-btn a{
     width: 100%;
     margin: 0px 0px 15px 0px;
-
   }
 </style>
 
@@ -95,7 +94,9 @@
               <div class="grid-tem right">
                 <div style="position: absolute; bottom: 20px; right: 20px">
 
-                  <a href="/accounts/detail" class="btn btn-primary">조회</a>
+                  {% with "/accounts/detail/"|add:account.account_no as account_no %}
+                    <a href= {{ account_no }} class="btn btn-primary">조회</a>
+                  {% endwith %}
 
                   {% with "/transactions/withdraw/"|add:account.account_no as account_no %}
                     <a href= {{ account_no }} class="btn btn-primary">출금</a>
@@ -160,7 +161,7 @@
         <div class="card mb-8">
           <div class="card-body" style="position: relative; padding: 200px 0px 0px 0px;">
         
-            <div style="position: absolute; top: 40%; left: 40%">
+            <div style="position: absolute; top: 35%; left: 40%">
               <!-- <h2 class="card-title">Login or Register to use Services</h2> -->
               <div class="main-btn">
                 <a href="{% url 'signup' %}" class="btn btn-primary" >회원가입</a>

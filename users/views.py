@@ -142,3 +142,14 @@ def account_view(request):
         "form": form
     }
     return render(request, "Account/account.htm", context)
+
+
+def account_detail(request, account_no):
+    
+    account = Account.objects.get(account_no=account_no)
+
+    context = {
+        "account": account,
+        "title": "Account Detail",
+    }
+    return render(request, "Account/detail.html", context)

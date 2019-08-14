@@ -25,21 +25,25 @@
         {% for i in dep_obj reversed%}
             <h6>+{{i.amount}} 원</h6>
             <p class="card-text-sidebar"> 입금 &rarr; 내 {{i.account_bank}}계좌</p>
+            <hr>
         {% endfor %}
-
+        
         {% for i in with_obj reversed %}
             <h6>-{{i.amount}} 원</h6>
-            <p class="card-text-sidebar"> 내 {{i.account_bank}}계좌 &rarr; 출금</p>        
+            <p class="card-text-sidebar"> 내 {{i.account_bank}}계좌 &rarr; 출금</p>
+            <hr>
         {% endfor %}
 
         {% for i in Td_obj reversed %}
             <h6>-{{i.amount}} 원</h6>
             <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
+            <hr>
         {% endfor %}
-
+        
         {% for i in Tc_obj reversed %}
             <h6>+{{i.amount}} 원</h6>
             <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
+            <hr>
         {% endfor %}
 
         <a href="#" class="btn btn-primary">상세 조회</a>
