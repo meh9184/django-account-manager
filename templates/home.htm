@@ -47,6 +47,11 @@
   .create-account .btn{
     border-color:white;
   }
+  .main-btn a{
+    width: 100%;
+    margin: 0px 0px 15px 0px;
+
+  }
 </style>
 
 
@@ -153,12 +158,15 @@
       <!-- Blog Entries Column -->
       <div class="col-md-12 mt-3">
         <div class="card mb-8">
-          <div class="card-body" style="position: relative; padding: 100px 0px 60px 0px;">
+          <div class="card-body" style="position: relative; padding: 200px 0px 0px 0px;">
         
-            <div style="position: absolute; top: 50%; left: 40%">
+            <div style="position: absolute; top: 40%; left: 40%">
               <!-- <h2 class="card-title">Login or Register to use Services</h2> -->
-              <a href="{% url 'signup' %}" class="btn btn-primary">회원가입</a>
-              <a href="{% url 'login'  %}" class="btn btn-primary">로그인</a>
+              <div class="main-btn">
+                <a href="{% url 'signup' %}" class="btn btn-primary" >회원가입</a>
+                <a href="{% url 'login'  %}" class="btn btn-primary" >로그인</a>
+              </div>
+              
             </div>
           </div>
         </div>
