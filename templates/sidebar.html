@@ -36,13 +36,22 @@
 
         {% for i in Td_obj reversed %}
             <h6>-{{i.amount}} 원</h6>
-            <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
+            {% if user.full_name == i.receiver_name %}
+                <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}} 계좌</p>
+            {% else %}
+                <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
+            {% endif %}
             <hr>
         {% endfor %}
         
         {% for i in Tc_obj reversed %}
             <h6>+{{i.amount}} 원</h6>
-            <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
+            {% if user.full_name == i.receiver_name %}
+                <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}} 계좌</p>
+            {% else %}
+                <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
+            {% endif %}
+            
             <hr>
         {% endfor %}
 

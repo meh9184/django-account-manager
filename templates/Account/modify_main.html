@@ -1,0 +1,104 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 15px;
+        background-color: #fdfdfd;
+    }
+
+    .head_text{
+        text-align: center;
+        color: white;
+    }
+    .card-body {
+        text-align: center;
+    }
+    .grid-item{
+        text-align: left;
+    }
+    .wrapper{
+        width: 25%;
+        float: left; 
+        margin: 30px 30px 30px 30px;
+    }
+    .card{
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+    .btn {
+        width: 90%;
+        font-size: 13px;
+    }
+    .card-title {
+        font-size: 20px;
+    }
+    .card-title a{
+        font-size: 8px;
+    }
+</style>
+
+<header class="masthead" >
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-white"> {{ title }} </h3>
+          <p class="text-light"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 card mb-4 mt-3">
+      <div class="card-body">
+
+        <h5>주 계좌로 변경할 계좌를 클릭하세요.</h5>
+
+        <div class="col-md-12 mt-3 card-grid">
+
+        {% for account in accounts %}
+            
+            <div class="wrapper">
+                <div class="card mb-4" >
+                    <div class="card-body">
+                        
+                        <div class="grid-item">
+                            <p class="card-title">
+                                {{ account.bank }} 계좌 
+                                <a class="card-text text-muted">{{ account.account_type }}</a>
+                            </p>
+                            <p class="card-text text-muted h6">{{ account.account_no }}</p>
+                            <p class="card-text">{{ account.balance }} 원</p>
+                        </div>
+                    </div>    
+                </div>
+                {% if account.is_main_account %}
+                    <a href='/' class="btn btn-success">현재 주계좌</a>
+                {% else %}
+                    {% with "/accounts/proc/"|add:account.account_no as account_no %}
+                        <a href= {{ account_no }} class="btn btn-primary">주계좌로 선택</a>
+                    {% endwith %}
+
+
+                    
+                {% endif %}
+            </div>
+
+        {% endfor %}
+
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

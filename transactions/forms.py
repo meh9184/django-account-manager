@@ -15,8 +15,8 @@ class DepositForm(forms.ModelForm):
         self.fields["account_no"].initial  = account_no
         self.fields["account_bank"].initial  = Account.objects.get(account_no=account_no).bank
         
-        self.fields["account_no"].widget.attrs['disabled '] = True
-        self.fields["account_bank"].widget.attrs['disabled'] = "disabled"
+        self.fields["account_no"].widget.attrs['readonly '] = True
+        # self.fields["account_bank"].widget.attrs['disabled'] = "disabled"
 
 
 class WithdrawForm(forms.ModelForm):
@@ -31,8 +31,8 @@ class WithdrawForm(forms.ModelForm):
         self.fields["account_no"].initial  = account_no
         self.fields["account_bank"].initial  = Account.objects.get(account_no=account_no).bank
 
-        self.fields["account_no"].widget.attrs['disabled '] = True
-        self.fields["account_bank"].widget.attrs['disabled'] = "disabled"
+        self.fields["account_no"].widget.attrs['readonly '] = True
+        # self.fields["account_bank"].widget.attrs['disabled'] = "disabled"
 
 
 class TransferForm(forms.ModelForm):
@@ -44,8 +44,9 @@ class TransferForm(forms.ModelForm):
         account_no = kwargs.pop('account_no')
         super(TransferForm, self).__init__(*args, **kwargs)
 
-        self.fields["account_no_from"].initial  = account_no
-        self.fields["account_bank_from"].initial  = Account.objects.get(account_no=account_no).bank
-        
-        self.fields["account_no_from"].widget.attrs['disabled '] = True
-        self.fields["account_bank_from"].widget.attrs['disabled'] = "disabled"
+        if account_no:
+            self.fields["account_no_from"].initial  = account_no
+            self.fields["account_bank_from"].initial  = Account.objects.get(account_no=account_no).bank
+            
+            self.fields["account_no_from"].widget.attrs['readonly '] = True
+            # self.fields["account_bank_from"].widget.attrs['disabled'] = "disabled"

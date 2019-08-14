@@ -66,7 +66,7 @@ def withdraw_view(request, account_no):
     }
     return render(request, "DW/dw.htm", context)
 
-def transfer_view(request, account_no):
+def transfer_view(request, account_no=False):
     form = TransferForm(request.POST or None, account_no=account_no)
 
     if form.is_valid():

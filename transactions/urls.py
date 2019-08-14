@@ -6,5 +6,6 @@ from .views import deposit_view, withdraw_view, transfer_view
 urlpatterns = [
     path('deposit/<account_no>', deposit_view, name='Deposit'),
     path('withdraw/<account_no>', withdraw_view, name='Withdraw'),
-    path('transfer/<account_no>', transfer_view, name='Transfer')
+    path('transfer/<account_no>', transfer_view, name='Transfer'),
+    path('transfer_option', transfer_view, name='Transfer'),
 ]

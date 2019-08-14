@@ -104,18 +104,20 @@ def account_view(request):
         account = form.save(commit=False)
         account.user = CustomUser.objects.get(email=request.user)
 
+        # 해당 계좌가 주 계좌로 설정됐다면
+        if (account.is_main_account == True):
 
-        # 기존에 주 계좌로 설정된 계좌가 존재한다면
-        if (account.user.main_account_no != '') and (account.is_main_account == True):
+            # 기존에 주 계좌로 설정된 계좌가 존재한다면
+            if (account.user.main_account_no != '') :
 
-            # 기존의 주 계좌 설정을 False로 변경하고
-            prev_main_account = Account.objects.get(account_no = account.user.main_account_no)
-            prev_main_account.is_main_account = False
-            prev_main_account.save()
+                # 기존의 주 계좌 설정을 False로 변경하고
+                prev_main_account = Account.objects.get(account_no = account.user.main_account_no)
+                prev_main_account.is_main_account = False
+                prev_main_account.save()
 
-        # 해당 사용자의 주 계좌 번호를 변경
-        account.user.main_account_no = account.account_no
-
+            # 해당 사용자의 주 계좌 번호를 변경
+            account.user.main_account_no = account.account_no
+        
         # 출금 한도량 설정
         if account.account_type == '일반':
             account.limit_once = 300000
@@ -153,3 +155,34 @@ def account_detail(request, account_no):
         "title": "Account Detail",
     }
     return render(request, "Account/detail.html", context)
+
+
+def account_modify_main(request):
+    
+    accounts = Account.objects.filter(user=request.user.id)
+
+    context = {
+        "accounts": accounts,
+        "title": "Main Account Setting",
+    }
+    return render(request, "Account/modify_main.html", context)
+
+
+def account_proc(request, account_no):
+    
+    account = Account.objects.get(account_no=account_no)
+
+    # 자신의 주 계좌 설정을 True로 변경하고,
+    account.is_main_account = True
+
+    # 기존 주 계좌였던 계좌 설정을 False로 변경
+    prev_main_account = Account.objects.get(account_no = account.user.main_account_no)
+    prev_main_account.is_main_account = False
+    prev_main_account.save()
+
+    # 해당 사용자의 주 계좌 번호를 변경
+    account.user.main_account_no = account.account_no
+    account.user.save()
+    account.save()
+
+    return redirect("home")

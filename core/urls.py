@@ -18,18 +18,20 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
 from transactions.views import transcations_detail, transcations_summary
-from users.views import Home, account_view, account_detail
+from users.views import *
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('accounts/', account_view),
+    path('accounts/modify_main', account_modify_main),
+    path('accounts/proc/<account_no>', account_proc),
     path('accounts/detail/<account_no>', account_detail),
     path('transactions/', include('transactions.urls')),
     path('transactions/detail/', transcations_detail),
     path('transactions/summary/', transcations_summary),
     path('users/', include('django.contrib.auth.urls')),
-    path('balance/',TemplateView.as_view(template_name='check_bal.htm'),name='check Bal'),
+    # path('balance/',TemplateView.as_view(template_name='check_bal.htm'),name='check Bal'),
 
 ]

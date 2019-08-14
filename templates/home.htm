@@ -76,7 +76,6 @@
   <div class="container">
     <div class="row">
 
-      <!-- Blog Entries Column -->
       <div class="col-md-8 mt-3 left">
         {% for account in account_obj %}
           <div class="card mb-4" >
@@ -107,7 +106,7 @@
                   {% endwith %}
 
                   {% with "/transactions/transfer/"|add:account.account_no as account_no %}
-                    {% if account.daily_transfer_number <= 0 %}
+                    {% if account.daily_transfer_number == 0 %}
                       <a href= {{ account_no }} class="btn btn-danger">이체</a>
                     {% else %}
                       <a href= {{ account_no }} class="btn btn-primary">이체</a>
@@ -118,7 +117,7 @@
 
                 {% if account.is_main_account %}
                   <div style="position: absolute; top: 20px; right: 20px">
-                    <div class="btn btn-success">주 계좌</div>
+                    <a href='accounts/modify_main' class="btn btn-success">주 계좌</a>
                   </div>
                 {% endif %}
 
