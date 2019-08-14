@@ -23,8 +23,18 @@ import datetime
 def reset_limit():
     accounts = Account.objects.all()
     for account in accounts:
-        account.limit_daily = 300000
-        account.limit_once = 300000
+        if account.account_type == '일반':
+            account.limit_once = 300000
+            account.limit_daily = 300000
+
+        elif account.account_type == '급여':
+            account.limit_once = 10000000
+            account.limit_daily = 100000000
+            
+        elif account.account_type == '적금':
+            account.limit_once = 0
+            account.limit_daily = 0
+            
         account.save()
     
     print(' 리셋 백그라운드 테스크 실행')
