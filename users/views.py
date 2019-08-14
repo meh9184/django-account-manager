@@ -13,9 +13,21 @@ from django.core.exceptions import ValidationError
 
 from .models import CustomUser, Account 
 from .forms import CustomUserCreationForm,PasswordChangeForm, AccountForm
-
 from transactions.models import Withdraw,Deposit,Transfer
 
+from background_task import background
+import datetime
+
+
+@background(schedule=3600)
+def reset_limit():
+    accounts = Account.objects.all()
+    for account in accounts:
+        account.limit_daily = 300000
+        account.limit_once = 300000
+        account.save()
+    
+    print(' 리셋 백그라운드 테스크 실행')
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
@@ -68,7 +80,6 @@ class Home(TemplateView):
             }
         
         return render(request,'home.htm', context)
-
 
 def account_view(request):
     form = AccountForm(request.POST or None)

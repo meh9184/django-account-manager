@@ -30,4 +30,5 @@ urlpatterns = [
     path('transactions/summary/', transcations_summary),
     path('users/', include('django.contrib.auth.urls')),
     path('balance/',TemplateView.as_view(template_name='check_bal.htm'),name='check Bal'),
+
 ]

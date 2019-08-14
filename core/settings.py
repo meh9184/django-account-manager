@@ -40,7 +40,12 @@ INSTALLED_APPS = [
 
     'users',
     'transactions',
+
+    'background_task', # batch job 관련 library
 ]
+
+# BACKGROUND_TASK_RUN_ASYNC=True
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,3 +144,5 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
