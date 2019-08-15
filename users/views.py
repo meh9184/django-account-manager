@@ -99,7 +99,6 @@ class Home(TemplateView):
                 reverse=True
             )
 
-
             context={
                 'transactions': transactions_hub,
                 'transactions_recent': transactions_hub[:5],

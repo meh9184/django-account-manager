@@ -70,6 +70,8 @@
 
 {% if user.is_authenticated %}
 
+  {{ total_balance }}
+
   <header class="masthead" >
     <div class="overlay"></div>
     <div class="container">
@@ -78,10 +80,11 @@
           <div class="site-heading">
             <h3 class=" site-heading my-4 mt-3 text-white"> Welcome, {{ user.full_name }} </h3>
             <p class="text-light">계좌는 최대 5개 까지 개설 가능합니다. &nbsp</p>
+            <!-- <p class="text-light text-right"></p> -->
             
             <div class="mgr-account">
-                <a href="/accounts" class="btn btn-primary">계좌 생성</a>  
-                <a href="/accounts/modify_main" class="btn btn-success">주 계좌 변경</a>
+              <a href="/accounts" class="btn btn-primary">계좌 생성</a>  
+              <a href="/accounts/modify_main" class="btn btn-success">주 계좌 변경</a>
             </div>
             
           </div>
