@@ -148,9 +148,7 @@
 
 ### 계좌 개설
 >
-> <kbd>
->   <img src="./screenshots/create_account.gif" alt="create_account" width='80%'/>
-> </kbd>
+> <img src="./screenshots/create_account.gif" alt="create_account" width='80%'/>
 > 
 > - 로그인후 우측 상단의 `계좌 생성` 버튼을 클릭하여 새로운 계정 생성
 > 
