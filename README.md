@@ -317,11 +317,9 @@
 
 ### Issues
 > 
-> - API (POST /login) 을 준수하려고 하다 보니, 이미 Google 계정이 DB에 Create 된 상태에서 POST /login 요청으로 로그인 할 경우 리소스 충돌이 발생하여 400 (Bad Request /login) error 발생
+> - django-background-tasks를 사용하여 하루마다 이체 한도 숫자와 출금 한도량을 초기화하고 있지만, 백그라운드에서 실행되는 
 > 
-> - 해당 문제는 try catch error 핸들러를 통해 우회하여 서비스에는 지장 없음
-> 
-> - 그러나, 원활한 통신을 위해 Non Authorized 유저 검색 API를 만들어 Bad Request Error 자체를 없애는 작업 필요
+> - API timeout 및 이체 처리 시간 관련 작업은 제한된 시간안에 진행하지 못했습니다.
 > 
 
 ### Tools for Windows OS Users
