@@ -194,13 +194,15 @@ def account_proc(request, account_no):
     
     account = Account.objects.get(account_no=account_no)
 
+    # 만약 사용자의 주 계좌가 사전에 설정돼 있었다면
+    if account.user.main_account_no != '':
+        # 기존 주 계좌였던 계좌 설정을 False로 변경
+        prev_main_account = Account.objects.get(account_no = account.user.main_account_no)
+        prev_main_account.is_main_account = False
+        prev_main_account.save()
+
     # 자신의 주 계좌 설정을 True로 변경하고,
     account.is_main_account = True
-
-    # 기존 주 계좌였던 계좌 설정을 False로 변경
-    prev_main_account = Account.objects.get(account_no = account.user.main_account_no)
-    prev_main_account.is_main_account = False
-    prev_main_account.save()
 
     # 해당 사용자의 주 계좌 번호를 변경
     account.user.main_account_no = account.account_no
