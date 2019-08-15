@@ -3,7 +3,7 @@
 #### 계좌관리 및 거래 시뮬레이션 웹 어플리케이션
 
 <kbd>
-  <img src="./screenshots/test.gif" alt="main" width='100%'/>
+  <img src="./screenshots/main.gif" alt="main" width='100%'/>
 </kbd>
 
 <br/>
@@ -157,8 +157,6 @@
 > - 로그인후 우측 상단의 `계좌 생성` 버튼을 클릭하여 새로운 계정 생성
 > 
 > - 계좌번호, 초기 잔액, 은행, 계좌 형태, 주 계좌 여부를 입력하고 계정 생성
-> 
-> - 계좌번호, 초기 잔액, 은행, 계좌 형태, 주 계좌 여부를 입력하고 계정 생성
 
 ### 주 계좌 변경
 >
@@ -261,7 +259,7 @@
 > **이체 수수료**
 >
 > <kbd>
->   <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='100%'/>
+>   <img src="./screenshots/transfer_commission.gif" alt="transfer_commission" width='100%'/>
 > </kbd>
 > 
 > - 이체할 계좌의 `은행 이름` 버튼 클릭하여 상세정보 들어가서, `하루 무료 계좌이체 잔여 횟수` 확인
@@ -269,6 +267,8 @@
 > - `하루 출금 허용 잔여 금액`만큼 이체한 후, 이체 버튼의 색깔이 변하는 확인
 > 
 > - 해당 계좌의 상세정보 다시 들어가서, `하루 무료 계좌이체 잔여 횟수` 0 됐는지 확인
+>
+> - 이후 다른 종류의 이체에서 수수료 500원이 붙는지 확인
 
 ### 내역 조회
 >
@@ -295,7 +295,7 @@
 > **타임라인**
 >
 > <kbd>
->   <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='100%'/>
+>   <img src="./screenshots/timeline.gif" alt="timeline" width='100%'/>
 > </kbd>
 > 
 > - 우측 상단의 `타임라인` 버튼을 클릭하여 하루 단위로 분리 돼있는 거래 내역 확인
