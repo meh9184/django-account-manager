@@ -72,33 +72,6 @@
 > $ git clone https://github.com/meh9184/django-account-manager.git
 > ```
 
-### Configure db connection
-> 
-> - `core/settings.py` 파일의
-> - DATABASES 부분 USER, PASSWORD 입력
-> 
-> ```python
-> # Database
-> 
-> DATABASES = {
->     'default': {
->         'ENGINE': 'django.db.backends.mysql',
->         'NAME': 'account_manager',
->         'USER': 'INSERT HERE',        # 여기에 입력
->         'PASSWORD': 'INSERT HERE',    # 여기에 입력
->         'HOST': '127.0.0.1',
->         'PORT': '3306'
->     }
-> }
-> ```
-
-### Create mysql schema 
-> 
-> - MySQL CLI 상에서 `account_manager` 이름으로 스키마 생성
-> ```bash
-> mysql> create schema account_manager;
-> ```
-
 ### Install dependencies
 >
 > - virtaulenv 설치 안됐다면 apt-get으로 설치하고,
@@ -117,24 +90,37 @@
 > $ pip install -r requirements.txt
 > ```
 >
-> - makemigrations / migrate 명령어를 통해 MySQL에 Table 생성
-> ```bash
-> $ python manage.py makemigrations
-> $ python manage.py migrate
-> ```
->
 > - migrate 작업 완료됐으면 서버 실행
 > ```bash
 > $ python manage.py runserver
 > ```
+> 
+> - 초기 시뮬레이션 DB에서 생성된 유저의 ID와 PW
+> 
+> |  ID |  PW |
+> | --- | --- |
+> | meh9184@naver.com |*test0000|
+> | test1234@toss.im |*test0000|
 >
-> - 웹 브라우저로 접속
+> - 웹 브라우저로 접속하고, 해당 아이디로 로그인하여 시뮬레이션 데이터 확인
 >   - [http://localhost:8000/](http://localhost:8000/)
 
-### Generate data
+### Simulation data
 >
-> - Mysql DB 마이그레이션 또는 loaddata를 통한 시뮬레이션 데이터셋 제공 추가해야함
+> - [Report implemented assignment](report_implemented_assignment) 파트에서 설명하는 시뮬레이션 데이터를 그대로 이어받도록 `db.sqlite3` 파일을 같이 push해 두었습니다.
 > 
+> - 만약, Clean한 상태로 프로젝트를 시작하고 싶다면 다음과 같이 수행해주세요.
+> 
+> - `db.sqlite3` 파일을 삭제
+> ```bash
+> $ rm db.sqlite3
+> ```
+> 
+> - makemigrations / migrate 명령어를 통해 DB 생성
+> ```bash
+> $ python manage.py makemigrations
+> $ python manage.py migrate
+> ```
 
 ## *Report implemented assignment*
 
