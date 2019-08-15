@@ -81,10 +81,8 @@
 > $ source venv/bin/activate
 > ```
 >
-> - libmysqlclient 설치 안됐다면 설치하고,
 > - 현재 가상 환경에 requirements.txt의 dependencies 설치
 > ```bash
-> $ sudo apt-get install libmysqlclient-dev
 > $ pip install -r requirements.txt
 > ```
 >
