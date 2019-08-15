@@ -30,7 +30,6 @@
         {% for i in transactions_recent%}
             <div class="left">
 
-
                 {% if i.get_action_name == "Deposit" %}
                     <h6>+{{i.amount}} 원</h6>
                     <p class="card-text-sidebar"> 입금 &rarr; 내 {{i.account_bank}}계좌</p>

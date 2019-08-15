@@ -73,7 +73,11 @@ def transfer_view(request, account_no=False):
         transfer = form.save(commit=False)
         transfer.account = Account.objects.get(account_no=transfer.account_no_from)
 
-        commission = 0
+        commission = 500
+
+        # 받는 계좌의 잔고를 누산
+        receiver_obj = Account.objects.get(account_no=transfer.account_no_to)
+        receiver_obj.balance += transfer.amount
 
         # 보내는 계좌와 받는 계좌의 은행이 다른지 확인 (같다면 수수료 면제)
         if transfer.account.bank != Account.objects.get(account_no=transfer.account_no_to).bank:
@@ -81,19 +85,15 @@ def transfer_view(request, account_no=False):
             # 보내는 계좌의 하루 이체 건수 확인
             if transfer.account.daily_transfer_number <= 0:
                 # 초과했다면 수수료 500원 부과
-                commission += 500
+                transfer.amount += commission
             else:
                 # 초과하지 않았다면 이체 건수 하나 감소
                 transfer.account.daily_transfer_number -= 1
 
         # 보내는 계좌의 잔고를 차감
         transfer.user_name = CustomUser.objects.get(email=request.user).full_name
-        transfer.account.balance -= (transfer.amount + commission)
+        transfer.account.balance -= transfer.amount
         transfer.account.save()
-
-        # 받는 계좌의 잔고를 누산
-        receiver_obj = Account.objects.get(account_no=transfer.account_no_to)
-        receiver_obj.balance += (transfer.amount)
 
         # 추가 정보 저장
         transfer.receiver_id = receiver_obj.user.id

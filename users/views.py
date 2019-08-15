@@ -88,7 +88,7 @@ class Home(TemplateView):
 
 
             # 모든 트랜젝션을 한 종류의 객체로 취급
-            # 4 종류의 객체를 정리하여 time을 key로 하는 dict 만들고 key 기준으로 정렬
+            # 4 종류의 객체를 정리하여 리스트 만들고 timestamp 기준으로 정렬
             from itertools import chain
             from operator import attrgetter
 
@@ -98,11 +98,6 @@ class Home(TemplateView):
                 key = attrgetter('timestamp'), 
                 reverse=True
             )
-
-            # print(transactions_hub)
-            # for i in transactions_hub:
-            #     print(i.timestamp)
-
 
 
             context={
@@ -225,3 +220,28 @@ def account_delete(request, account_no):
     account.delete()
 
     return redirect("home")
+
+
+def account_history(request, account_no):
+        
+    account = Account.objects.get(account_no=account_no)
+    
+    deposits  = Deposit.objects.filter(account_no=account_no)
+    withdraws = Withdraw.objects.filter(account_no=account_no)
+    transform_credits = Transfer.objects.filter(account_no_to=account_no)
+    transform_debits = Transfer.objects.filter(account_no_from=account_no)
+
+    for obj in transform_credits:
+        obj.set_action_name('Transfer_credit')
+    for obj in transform_debits:
+        obj.set_action_name('Transfer_debit')
+
+    context = {
+        "account": account,
+        "deposits": deposits,
+        "withdraws": withdraws,
+        "transform_credits": transform_credits,
+        "transform_debits": transform_debits,
+        "title": "Account History",
+    }
+    return render(request, "Account/history.html", context)

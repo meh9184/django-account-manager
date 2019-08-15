@@ -1,0 +1,314 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+    }
+    button {
+        background-color: #3398E1;
+        color: white;
+        padding: 5px 40px 5px 40px;
+    }
+    .card-body {
+        text-align: center;
+    }
+    table {
+        margin-left: auto; 
+        margin-right: auto;
+        margin-bottom: 40px;
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+
+        font-size: 12px;
+        vertical-align: center;
+        text-align: center;
+
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    table thead{
+        font-size: 12px;
+
+        background-color: rgb(236, 236, 236);
+        border-bottom: 1px solid #ccc;
+    }
+    table tr{
+        vertical-align: center;
+        border-top: 1px solid #ccc;
+        
+    }
+    table th {
+        padding: 10px 10px 10px 10px;
+        font-weight: bold;
+        border-left: 1px solid #ccc;
+    }
+    table td {
+        padding: 10px 15px 10px 15px;
+        border-left: 1px solid #ccc;
+    }
+    .btn {
+        width: 180px;
+        font-size: 13px;
+    }
+
+    
+</style>
+
+<header class="masthead" >
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-white"> {{ title }} </h3>
+          <p class="text-light"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 card mb-4  mt-3 left  top">
+      <div class="card-body">
+
+        <br>  
+
+        <p> {{account.bank}} {{account.account_no}}</p>
+        <h5>보낸 계좌이체 내역</h5>
+        <p> 총 건수 : {{ transform_debits.count }}</p>
+        <br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-left: 0">일시</th>
+                    <th rowspan="2">종류</th>
+                    <th colspan="3">입금 계좌</th>
+                    <th colspan="3">출금 계좌</th>
+                    <th rowspan="2">금액</th>
+                </tr>
+                <tr>
+                    <th style="border-left: 0">날짜</th>
+                    <th style="border-left: 0">시간</th>
+                    <th>계좌주</th>
+                    <th style="border-left: 0">은행</th>
+                    <th style="border-left: 0">계좌번호</th>
+                    <th>계좌주</th>
+                    <th style="border-left: 0">은행</th>
+                    <th style="border-left: 0">계좌번호</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if transform_debits.count != 0 %}
+                    {% for i in transform_debits reversed %}
+                    <tr>
+                        <td style="border-left: 0">{{ i.timestamp|date:"Y-m-j" }}</td>
+                        <td style="border-left: 0">{{ i.timestamp|date:"g:i A" }}</td>
+                        <td>{{ i.get_action_name }}</td>
+                        <td>{{i.user_name}}</td>
+                        <td style="border-left: 0">{{i.account_bank_from}}</td>
+                        <td style="border-left: 0">{{i.account_no_from}}</td>
+                        <td>{{i.receiver_name}}</td>
+                        <td style="border-left: 0">{{i.account_bank_to}}</td>
+                        <td style="border-left: 0">{{i.account_no_to}}</td>
+                        <td>{{i.amount}} 원</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                        <td></td>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+            </tbody>
+            
+        </table>
+
+        <br>  
+
+        <p> {{account.bank}} {{account.account_no}}</p>
+        <h5>받은 계좌이체 내역</h5>
+        <p> 총 건수 : {{ transform_credits.count }}</p>
+
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-left: 0">일시</th>
+                    <th rowspan="2">종류</th>
+                    <th colspan="3">입금 계좌</th>
+                    <th colspan="3">출금 계좌</th>
+                    <th rowspan="2">금액</th>
+                </tr>
+                <tr>
+                    <th style="border-left: 0">날짜</th>
+                    <th style="border-left: 0">시간</th>
+                    <th>계좌주</th>
+                    <th style="border-left: 0">은행</th>
+                    <th style="border-left: 0">계좌번호</th>
+                    <th>계좌주</th>
+                    <th style="border-left: 0">은행</th>
+                    <th style="border-left: 0">계좌번호</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if transform_credits.count != 0 %}
+                    {% for i in transform_credits reversed %}
+                    <tr>
+                        <td style="border-left: 0">{{ i.timestamp|date:"Y-m-j" }}</td>
+                        <td style="border-left: 0">{{ i.timestamp|date:"g:i A" }}</td>
+                        <td>{{ i.get_action_name }}</td>
+                        <td>{{i.user_name}}</td>
+                        <td style="border-left: 0">{{i.account_bank_from}}</td>
+                        <td style="border-left: 0">{{i.account_no_from}}</td>
+                        <td>{{i.receiver_name}}</td>
+                        <td style="border-left: 0">{{i.account_bank_to}}</td>
+                        <td style="border-left: 0">{{i.account_no_to}}</td>
+                        <td>{{i.amount}} 원</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                        <td></td>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+
+            </tbody>
+        </table>
+        
+        <br>
+
+        <p> {{account.bank}} {{account.account_no}}</p>
+        <h5>입금 내역</h5>
+        <p> 총 건수 : {{ deposits.count }}</p>
+
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-left: 0">일시</th>
+                    <th rowspan="2">종류</th>
+                    <th colspan="3">입금 계좌</th>
+                    <th rowspan="2">금액</th>
+                </tr>
+                <tr>
+                    <th style="border-left: 0">날짜</th>
+                    <th style="border-left: 0">시간</th>
+                    <th>계좌주</th>
+                    <th style="border-left: 0">은행</th>
+                    <th style="border-left: 0">계좌번호</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if deposits.count != 0 %}
+                    {% for i in deposits reversed %}
+                    <tr>
+                        <td style="border-left: 0">{{ i.timestamp|date:"Y-m-j" }}</td>
+                        <td style="border-left: 0">{{ i.timestamp|date:"g:i A" }}</td>
+                        <td>{{ i.get_action_name }}</td>
+                        <td>{{i.user_name}}</td>
+                        <td style="border-left: 0">{{i.account_bank}}</td>
+                        <td style="border-left: 0">{{i.account_no}}</td>
+                        <td>{{i.amount}} 원</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                        <td></td>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <br>
+        
+        <p> {{account.bank}} {{account.account_no}}</p>
+        <h5>출금 내역</h5>
+        <p> 총 건수 : {{ withdraws.count }}</p>
+
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-left: 0">일시</th>
+                    <th rowspan="2">종류</th>
+                    <th colspan="3">입금 계좌</th>
+                    <th rowspan="2">금액</th>
+                </tr>
+                <tr>
+                    <th style="border-left: 0">날짜</th>
+                    <th style="border-left: 0">시간</th>
+                    <th>계좌주</th>
+                    <th style="border-left: 0">은행</th>
+                    <th style="border-left: 0">계좌번호</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if withdraws.count != 0 %}
+                    {% for i in withdraws reversed %}
+                    <tr>
+                        <td style="border-left: 0">{{ i.timestamp|date:"Y-m-j" }}</td>
+                        <td style="border-left: 0">{{ i.timestamp|date:"g:i A" }}</td>
+                        <td>{{ i.get_action_name }}</td>
+                        <td>{{i.user_name}}</td>
+                        <td style="border-left: 0">{{i.account_bank}}</td>
+                        <td style="border-left: 0">{{i.account_no}}</td>
+                        <td>{{i.amount}} 원</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                        <td></td>
+                        <td style="border-left: 0"></td>
+                        <td style="border-left: 0"></td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
