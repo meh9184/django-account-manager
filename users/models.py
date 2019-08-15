@@ -45,7 +45,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class Account(models.Model):
     account_no              = models.CharField(max_length=20)
     user                    = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    balance                 = models.IntegerField(default=0)
+    balance                 = models.PositiveIntegerField(default=0)
     daily_transfer_number   = models.IntegerField(default=3)
     is_main_account         = models.BooleanField(default=False)
     limit_once              = models.IntegerField(default=0)
