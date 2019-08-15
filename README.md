@@ -90,7 +90,7 @@
 > $ pip install -r requirements.txt
 > ```
 >
-> - migrate 작업 완료됐으면 서버 실행
+> - 완료됐으면 서버 실행
 > ```bash
 > $ python manage.py runserver
 > ```
