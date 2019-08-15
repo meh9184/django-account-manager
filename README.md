@@ -48,9 +48,9 @@
 ### DataBase Models and Relations
 > 
 > **Database schema**
-> 
-> <img src="./screenshots/database_schema.png" alt="database_schema" width='40%'/>
-> 
+> <kbd>
+>   <img src="./screenshots/database_schema.png" alt="database_schema" width='100%'/>
+> </kbd>
 > 1. 하나의 사용자(User) 모델은 다수의 계좌(Account) 모델을 가질 수 있다.
 > 
 > 2. 하나의 계좌(Account) 모델은 다수의 입금(Deposit) 모델을 가질 수 있다.
@@ -279,7 +279,9 @@
 > </kbd>
 > 
 > - 거래 내역을 확인하고 싶은 계좌의 `내역 조회` 버튼을 클릭하여 입금, 출금, 이체 내역 확인
->
+> 
+> - 모든 내역들이 최근 순으로 조회 되는지 확인
+> 
 > <br>
 > 
 > **모든 계좌 거래 내역 조회**
@@ -288,7 +290,9 @@
 >   <img src="./screenshots/account_history_all.gif" alt="account_history_all" width='100%'/>
 > </kbd>
 > 
-> - 우측 상단의 `조회` 버튼을 클릭하여 소지하고 있는 계좌들의 모든 조회를 최근 순으로 확인
+> - 우측 상단의 `조회` 버튼을 클릭하여 소지하고 있는 계좌들의 내역 확인
+> 
+> - 모든 내역들이 최근 순으로 조회 되는지 확인
 > 
 > <br>
 > 
@@ -308,11 +312,11 @@
 
 ### VCS
 > 
-> - 각 기능별 개발이 완료될 때 마다 적절히 git commit / push / pull 사용하며 진행
+> - 각 기능별 개발이 완료될 때 마다 적절히 git commit / push / pull 사용하며 진행했습니다.
 > 
-> - Github 저장소의 [Issue 등록 페이지](https://github.com/meh9184/django-account-manager/issues?q=is%3Aissue+is%3Aclosed)를 활용하여 개발 필요한 기능 정리해두고, 개발 완료시 close 하며 진행
+> - Github 저장소의 [Issue 등록 페이지](https://github.com/meh9184/django-account-manager/issues?q=is%3Aissue+is%3Aclosed)를 활용하여 개발 필요한 기능 정리해두고, 개발 완료시 close 하며 진행했습니다.
 > 
-> - 생성한 Issue 단위로 branch 생성하여 개발 진행, 개발 완료시 master에서 merge
+> - 생성한 Issue 단위로 branch 생성하여 개발했고, 개발 완료시 master에서 merge 하며 진행했습니다.
 > 
 
 ### Issues
