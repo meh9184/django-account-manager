@@ -81,12 +81,38 @@ class Home(TemplateView):
             Td_obj   = Transfer.objects.filter(user_name=user.full_name)
             Tc_obj   = Transfer.objects.filter(receiver_name=user.full_name)
 
+            for obj in Td_obj:
+                obj.set_action_name('Transfer_debit')
+            for obj in Tc_obj:
+                obj.set_action_name('Transfer_credit')
+
+
+            # 모든 트랜젝션을 한 종류의 객체로 취급
+            # 4 종류의 객체를 정리하여 time을 key로 하는 dict 만들고 key 기준으로 정렬
+            from itertools import chain
+            from operator import attrgetter
+
+            transactions_hub = list(chain(dep_obj, with_obj, Td_obj, Tc_obj))          
+            transactions_hub = sorted(
+                chain(dep_obj, with_obj, Td_obj, Tc_obj),
+                key = attrgetter('timestamp'), 
+                reverse=True
+            )
+
+            # print(transactions_hub)
+            # for i in transactions_hub:
+            #     print(i.timestamp)
+
+
+
             context={
-                'account_obj':account_obj,
-                'dep_obj':dep_obj,
-                'with_obj':with_obj,
-                'Td_obj':Td_obj,
-                'Tc_obj':Tc_obj,
+                'transactions': transactions_hub,
+                'transactions_recent': transactions_hub[:5],
+                'account_obj': account_obj,
+                'dep_obj': dep_obj,
+                'with_obj': with_obj,
+                'Td_obj': Td_obj,
+                'Tc_obj': Tc_obj,
             }
         
         return render(request,'home.htm', context)
@@ -147,9 +173,7 @@ def account_view(request):
 
 
 def account_detail(request, account_no):
-    
     account = Account.objects.get(account_no=account_no)
-
     context = {
         "account": account,
         "title": "Account Detail",
@@ -158,9 +182,7 @@ def account_detail(request, account_no):
 
 
 def account_modify_main(request):
-    
     accounts = Account.objects.filter(user=request.user.id)
-
     context = {
         "accounts": accounts,
         "title": "Main Account Setting",

@@ -10,7 +10,7 @@ User = settings.AUTH_USER_MODEL
 class Deposit(models.Model):
     account = models.ForeignKey(
         Account,
-        related_name='deposits',
+        related_name='Deposit',
         on_delete=models.CASCADE,
     )
     account_no = models.CharField(max_length=20)
@@ -34,16 +34,22 @@ class Deposit(models.Model):
         ]
     )
     timestamp   = models.DateTimeField(auto_now_add=True)
-    #timestamp = models.DateTimeField(blank=False,default=timezone.now)
+    action_name = 'Deposit'
 
+    def get_action_name(self):
+        return self.action_name 
+
+    def set_action_name(self, action_name):
+        self.action_name = action_name
+        return action_name
 
     def __str__(self):
-        return str(self.account.id)
+        return str(self.id)
 
 class Withdraw(models.Model):
     account = models.ForeignKey(
         Account,
-        related_name='withdraw',
+        related_name='Withdraw',
         on_delete=models.CASCADE,
     )
     account_no = models.CharField(max_length=20)
@@ -68,10 +74,18 @@ class Withdraw(models.Model):
     )
 
     timestamp   = models.DateTimeField(auto_now_add=True)
-    #timestamp = models.DateTimeField(blank=False,default=timezone.now)
-    
+    action_name = 'Withdraw'
+
+    def get_action_name(self):
+        return self.action_name 
+
+    def set_action_name(self, action_name):
+        self.action_name = action_name
+        return action_name
+
     def __str__(self):
-        return str(self.account.id)
+        return str(self.id)
+
 
 class Transfer(models.Model):
     account = models.ForeignKey(
@@ -105,6 +119,14 @@ class Transfer(models.Model):
         ]
     )
     timestamp   = models.DateTimeField(auto_now_add=True)
+    action_name = 'Transfer'
+
+    def get_action_name(self):
+        return self.action_name 
+
+    def set_action_name(self, action_name):
+        self.action_name = action_name
+        return action_name
 
     def __str__(self):
-        return str(self.user.id)
+        return str(self.id)

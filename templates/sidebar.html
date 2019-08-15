@@ -8,10 +8,18 @@
             font-size: 12px;
             color: gray;
         }
-        .btn{
+        .btn {
             float: right;
         }
-       
+        .left {
+            width: 70%;
+            float: left;
+        }
+        .right {
+            width: 30%;
+            font-size: 10px;
+            color: rgb(83, 83, 83);
+        }
 </style>
 
 <!-- Sidebar Widgets Column -->
@@ -22,36 +30,47 @@
     
     <div class="card-body">
         
-        {% for i in dep_obj reversed%}
-            <h6>+{{i.amount}} 원</h6>
-            <p class="card-text-sidebar"> 입금 &rarr; 내 {{i.account_bank}}계좌</p>
-            <hr>
-        {% endfor %}
-        
-        {% for i in with_obj reversed %}
-            <h6>-{{i.amount}} 원</h6>
-            <p class="card-text-sidebar"> 내 {{i.account_bank}}계좌 &rarr; 출금</p>
-            <hr>
-        {% endfor %}
+        {% for i in transactions_recent%}
+            <div class="left">
 
-        {% for i in Td_obj reversed %}
-            <h6>-{{i.amount}} 원</h6>
-            {% if user.full_name == i.receiver_name %}
-                <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}} 계좌</p>
-            {% else %}
-                <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
-            {% endif %}
-            <hr>
-        {% endfor %}
-        
-        {% for i in Tc_obj reversed %}
-            <h6>+{{i.amount}} 원</h6>
-            {% if user.full_name == i.receiver_name %}
-                <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}} 계좌</p>
-            {% else %}
-                <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
-            {% endif %}
-            
+
+                {% if i.get_action_name == "Deposit" %}
+                    <h6>+{{i.amount}} 원</h6>
+                    <p class="card-text-sidebar"> 입금 &rarr; 내 {{i.account_bank}}계좌</p>
+                {% endif %}
+
+
+                {% if i.get_action_name == "Withdraw" %}
+                    <h6>-{{i.amount}} 원</h6>
+                    <p class="card-text-sidebar"> 내 {{i.account_bank}}계좌 &rarr; 출금</p>
+                {% endif %}
+
+
+                {% if i.get_action_name == "Transfer_credit" %}
+                    <h6>-{{i.amount}} 원</h6>
+                    {% if user.full_name == i.receiver_name %}
+                        <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}} 계좌</p>
+                    {% else %}
+                        <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
+                    {% endif %}
+                {% endif %}
+
+
+                {% if i.get_action_name == "Transfer_debit" %}
+                    <h6>+{{i.amount}} 원</h6>
+                    {% if user.full_name == i.receiver_name %}
+                        <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}} 계좌</p>
+                    {% else %}
+                        <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+            <div class="right text-right">
+                {{ i.timestamp|date:"Y-m-j" }} <br>
+                {{ i.timestamp|date:"g:i A" }}
+            </div>
+            <br><br>
             <hr>
         {% endfor %}
 
