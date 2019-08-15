@@ -244,3 +244,24 @@ def account_history(request, account_no):
         "title": "Account History",
     }
     return render(request, "Account/history.html", context)
+
+
+def account_history_all(request):
+    
+    accounts = Account.objects.filter(user=request.user.id)
+
+    deposits = Deposit.objects.filter(user_name=request.user.full_name)
+    withdraws = Withdraw.objects.filter(user_name=request.user.full_name)
+    transform_credits = Transfer.objects.filter(user_name=request.user.full_name)
+    transform_debits = Transfer.objects.filter(receiver_name=request.user.full_name)
+    
+
+    context = {
+        "account": accounts,
+        "deposits": deposits,
+        "withdraws": withdraws,
+        "transform_credits": transform_credits,
+        "transform_debits": transform_debits,
+        "title": "Account History All",
+    }
+    return render(request, "Account/history_all.html", context)

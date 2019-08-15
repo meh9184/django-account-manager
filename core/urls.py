@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/', account_view),
     path('accounts/modify_main', account_modify_main),
     path('accounts/history/<account_no>', account_history),
+    path('accounts/history_all/', account_history_all),
     path('accounts/delete/<account_no>', account_delete),
     path('accounts/proc/<account_no>', account_proc),
     path('accounts/detail/<account_no>', account_detail),

@@ -75,13 +75,13 @@
 </header>
 
 <div class="container">
-  <div class="row">
+
+    <div class="row">
     <div class="col-md-12 card mb-4  mt-3 left  top">
-      <div class="card-body">
+        <div class="card-body">
 
         <br>  
 
-        <p> {{account.bank}} {{account.account_no}}</p>
         <h5>보낸 계좌이체 내역</h5>
         <p> 총 건수 : {{ transform_debits.count }}</p>
         
@@ -144,11 +144,11 @@
 
         <br>
 
-      </div>
+        </div>
     </div>
-  </div>
+    </div>
 
-  <div class="row">
+    <div class="row">
     <div class="col-md-12 card mb-4  mt-3 left  top">
         <div class="card-body">
         
@@ -219,9 +219,9 @@
 
         </div>
     </div>
-  </div>
+    </div>
 
-  <div class="row">
+    <div class="row">
     <div class="col-md-12 card mb-4  mt-3 left  top">
         <div class="card-body">
 
@@ -230,7 +230,7 @@
             <p> {{account.bank}} {{account.account_no}}</p>
             <h5>입금 내역</h5>
             <p> 총 건수 : {{ deposits.count }}</p>
-    
+
             <br>
 
             <table>
@@ -249,7 +249,7 @@
                         <th style="border-left: 0">계좌번호</th>
                     </tr>
                 </thead>
-    
+
                 <tbody>
                     {% if deposits.count != 0 %}
                         {% for i in deposits reversed %}
@@ -281,19 +281,19 @@
 
         </div>
     </div>
-  </div>
+    </div>
 
 
-  <div class="row">
+    <div class="row">
     <div class="col-md-12 card mb-4  mt-3 left  top">
         <div class="card-body">
 
             <br>
-    
+
             <p> {{account.bank}} {{account.account_no}}</p>
             <h5>출금 내역</h5>
             <p> 총 건수 : {{ withdraws.count }}</p>
-    
+
             <br>
 
             <table>
@@ -312,7 +312,7 @@
                         <th style="border-left: 0">계좌번호</th>
                     </tr>
                 </thead>
-    
+
                 <tbody>
                     {% if withdraws.count != 0 %}
                         {% for i in withdraws reversed %}
@@ -344,7 +344,7 @@
 
         </div>
     </div>
-  </div>
+    </div>
 
 
 </div>
