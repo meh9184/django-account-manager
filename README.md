@@ -42,8 +42,6 @@
 >   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
 >  <br/>
 > 
-> - Database
->   - [MySQL 5.6](https://dev.mysql.com/downloads/mysql/5.6.html)
 
 ### DataBase Models and Relations
 > 
