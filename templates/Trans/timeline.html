@@ -129,21 +129,27 @@
                     <div class="wrapper">
                         <div class="text-left">
                             {% if i.get_action_name == "Deposit" %}
-                                <div class="btn btn-light account"> {{i.account_bank}} </div>
+                                {% with "/accounts/detail/"|add:i.account_no as account_no %}
+                                    <a href= {{ account_no }} class="btn btn-light account">{{i.account_bank}}</a>
+                                {% endwith %}
                                 +{{i.amount}} 원
                                 <p> 입금 &rarr; 내 {{i.account_bank}}계좌</p>
                             {% endif %}
             
             
                             {% if i.get_action_name == "Withdraw" %}
-                                <div class="btn btn-light account"> {{i.account_bank}} </div>
+                                {% with "/accounts/detail/"|add:i.account_no as account_no %}
+                                    <a href= {{ account_no }} class="btn btn-light account">{{i.account_bank}}</a>
+                                {% endwith %}
                                 -{{i.amount}} 원
                                 <p> 내 {{i.account_bank}}계좌 &rarr; 출금</p>
                             {% endif %}
             
             
                             {% if i.get_action_name == "Transfer_debit" %}
-                                <div class="btn btn-light account"> {{i.account_bank_from}} </div>
+                                {% with "/accounts/detail/"|add:i.account_no_from as account_no %}
+                                    <a href= {{ account_no }} class="btn btn-light account">{{i.account_bank_from}}</a>
+                                {% endwith %}
                                 -{{i.amount}} 원
                                 {% if user.full_name == i.receiver_name %}
                                     <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}}계좌</p>
@@ -154,7 +160,9 @@
             
             
                             {% if i.get_action_name == "Transfer_credit" %}
-                                <div class="btn btn-light account"> {{i.account_bank_to}} </div>
+                                {% with "/accounts/detail/"|add:i.account_no_to as account_no %}
+                                    <a href= {{ account_no }} class="btn btn-light account">{{i.account_bank_to}}</a>
+                                {% endwith %}
                                 +{{i.amount}} 원
                                 {% if user.full_name == i.user_name %}
                                     <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}}계좌</p>
