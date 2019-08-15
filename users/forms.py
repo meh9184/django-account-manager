@@ -31,4 +31,4 @@ class CustomUserChangeForm(UserChangeForm):
 class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ["account_no", "balance", "bank", "account_type", "is_main_account"]
+        fields = ["bank", "account_no", "account_type", "balance", "is_main_account"]

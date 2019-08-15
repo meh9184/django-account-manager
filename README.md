@@ -1,6 +1,6 @@
 # django-account-manager
 
-#### JWT 기반의 Django Auth REST API, Google Oauth2.0 로그인 가능한 React Client Web App
+#### 계좌관리 및 거래 시뮬레이션 웹 어플리케이션
 
 <kbd>
   <img src="./screenshots/test.gif" alt="main" width='100%'/>
@@ -15,20 +15,20 @@
 ### Summary
 
 > - Project 소개
->   - 간단한 계좌관리 웹 어플리케이션입니다.
+>   - 계좌관리 및 거래 시뮬레이션 웹 어플리케이션입니다.
 >   - 사용자당 최대 5개의 계좌를 계설할 수 있으며, 주 계좌를 설정/변경할 수 있습니다.
 >   - 계좌의 종류는 총 3가지 (일반/급여/적금) 존재하며, 각각의 종류마다 출금 한도가 존재합니다. 
 >   - 입금 한도는 없으며, 출금 한도는 다음과 같습니다.
 >     - 일반 : 1회 30만원 / 1일 30만원
 >     - 급여: 1회 1,000만원 / 1일 1억원
 >     - 적금: 출금 불가
+> 
 >   - 계좌간 이체가 가능하며, 종류가 다른 계좌로의 이체시 수수료 500원이 부과됩니다. 
 >   - 다른 종류의 계좌로 이체시 하루 3건까지는 수수료가 면제됩니다.
 >  <br/>
 > 
 > - BACKEND (Djagno)
 >   - Django를 이용하여 구현
->   - JWT를 이용한 OAuth 2.0 Auth 프로토콜 기반으로 Authentication 및 Authorization 구현 
 >  <br/>
 > 
 > - FRONTEND (Djagno Template)
@@ -96,7 +96,7 @@
 > 
 > - MySQL CLI 상에서 `account_manager` 이름으로 스키마 생성
 > ```bash
-> mysql> create schema jwt_todo_demo;
+> mysql> create schema account_manager;
 > ```
 
 ### Install dependencies
@@ -173,6 +173,7 @@
 ### 거래
 >
 > **입금 (Deposit)**
+>
 > <kbd>
 >   <img src="./screenshots/deposit.gif" alt="deposit" width='100%'/>
 > </kbd>
@@ -186,6 +187,7 @@
 > <br>
 > 
 > **출금 (Withdraw)**
+>
 > <kbd>
 >   <img src="./screenshots/withdraw.gif" alt="withdraw" width='100%'/>
 > </kbd>
@@ -199,6 +201,7 @@
 > <br>
 > 
 > **이체 (Transfer) - 자신의 계좌에 송금**
+>
 > <kbd>
 >   <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='100%'/>
 > </kbd>
@@ -212,6 +215,7 @@
 > <br>
 > 
 > **이체 (Transfer) - 타 새용자 계좌에 송금**
+>
 > <kbd>
 >   <img src="./screenshots/transfer_you.gif" alt="transfer_you" width='100%'/>
 > </kbd>
@@ -229,6 +233,7 @@
 ### 제약 사항
 >
 > **계좌 개수 한도**
+>
 > <kbd>
 >   <img src="./screenshots/limit_account.gif" alt="limit_account" width='100%'/>
 > </kbd>
@@ -240,6 +245,7 @@
 > <br>
 > 
 > **출금 한도**
+>
 > <kbd>
 >   <img src="./screenshots/limit_withdraw.gif" alt="limit_withdraw" width='100%'/>
 > </kbd>
@@ -253,6 +259,7 @@
 > <br>
 > 
 > **이체 수수료**
+>
 > <kbd>
 >   <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='100%'/>
 > </kbd>
@@ -266,6 +273,7 @@
 ### 내역 조회
 >
 > **특정 계좌 거래 내역 조회**
+>
 > <kbd>
 >   <img src="./screenshots/account_history.gif" alt="account_history" width='100%'/>
 > </kbd>
@@ -275,6 +283,7 @@
 > <br>
 > 
 > **모든 계좌 거래 내역 조회**
+>
 > <kbd>
 >   <img src="./screenshots/account_history_all.gif" alt="account_history_all" width='100%'/>
 > </kbd>
@@ -284,6 +293,7 @@
 > <br>
 > 
 > **타임라인**
+>
 > <kbd>
 >   <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='100%'/>
 > </kbd>
