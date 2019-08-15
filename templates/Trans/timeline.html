@@ -1,0 +1,185 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+    }
+    .card-body {
+        text-align: center;
+    }
+    table {
+        margin-left: auto; 
+        margin-right: auto;
+        margin-bottom: 40px;
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        border-left: 3px solid #369;
+        background-color: rgb(248, 248, 248);
+    }
+    table th {
+        width: 240px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        color: #153d73;
+
+
+        /* border-bottom: 1px solid #ccc; */
+    }
+    table td {
+        width: 400px;
+        padding: 10px;
+        vertical-align: top;
+        padding-left: 30px;
+
+        /* border-bottom: 1px solid #ccc; */
+    }
+    .wrapper {
+        position: relative;
+    }
+    .text-left {
+        width: 70%;
+        float: left;
+    }
+    .text-right {
+        width: 20%;
+        float: right;
+        font-size: 12px;
+
+        margin-right: 15px;
+        color: gray;
+    }
+    .text-left .btn{
+        font-size: 13px;
+
+        margin-bottom: 10px;
+        margin-right: 5px;
+
+        padding: 8px 15px 8px 15px;
+        border-color: #153d73;
+    }
+
+    .text-left p{
+        font-size: 15px;
+        color: gray;
+        margin-left: 5px;
+    }
+    .count {
+        position: relative;
+        margin-left: 170px;
+        text-align: center;
+    }
+    .count-common {
+        width: 20%;
+        float: left;
+    }
+</style>
+
+<header class="masthead" >
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-4 mt-3 text-white"> {{ title }} </h3>
+          <p class="text-light"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+    <div class="row">
+    <div class="col-md-12 card mb-4  mt-3 left  top">
+        <div class="card-body">
+
+        <br> 
+        <h5>타임라인</h5>
+        <p> 총 건수 : {{ count }}</p>
+        
+        <br>
+
+        <div class="count">
+            <div class="count-common"> <p> 받은 이체 : {{ count_dep }} 회</p> </div>
+            <div class="count-common"> <p> 보낸 이체 : {{ count_with }} 회</p> </div>
+            <div class="count-common"> <p> 입금 : {{ count_Td }} 회</p> </div>
+            <div class="count-common"> <p> 출금 : {{ count_Tc }} 회</p> </div>
+        </div>
+
+        <br><br><br>
+
+        
+        {% for date, transactions in transactions_by_date.items %}
+        <table>
+            <tr>
+                <th>{{ date }}</th>
+            </tr>
+
+            {% for i in transactions%}
+            <tr>
+                <td>
+                    <div class="wrapper">
+                        <div class="text-left">
+                            {% if i.get_action_name == "Deposit" %}
+                                <div class="btn btn-light account"> {{i.account_bank}} </div>
+                                +{{i.amount}} 원
+                                <p> 입금 &rarr; 내 {{i.account_bank}}계좌</p>
+                            {% endif %}
+            
+            
+                            {% if i.get_action_name == "Withdraw" %}
+                                <div class="btn btn-light account"> {{i.account_bank}} </div>
+                                -{{i.amount}} 원
+                                <p> 내 {{i.account_bank}}계좌 &rarr; 출금</p>
+                            {% endif %}
+            
+            
+                            {% if i.get_action_name == "Transfer_debit" %}
+                                <div class="btn btn-light account"> {{i.account_bank_from}} </div>
+                                -{{i.amount}} 원
+                                {% if user.full_name == i.receiver_name %}
+                                    <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}}계좌</p>
+                                {% else %}
+                                    <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; {{i.receiver_name}}</p>
+                                {% endif %}
+                            {% endif %}
+            
+            
+                            {% if i.get_action_name == "Transfer_credit" %}
+                                <div class="btn btn-light account"> {{i.account_bank_to}} </div>
+                                +{{i.amount}} 원
+                                {% if user.full_name == i.user_name %}
+                                    <p class="card-text-sidebar"> 내 {{i.account_bank_from}}계좌 &rarr; 내 {{i.account_bank_to}}계좌</p>
+                                {% else %}
+                                    <p class="card-text-sidebar"> {{i.user_name}} &rarr; 내 {{i.account_bank_to}}계좌</p>
+                                {% endif %}
+                            {% endif %}
+            
+                        </div>
+
+                        <div class="text-right">
+                            {{ i.timestamp|date:"g:i A" }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endfor %}
+
+        </div>
+    </div>
+    </div>
+
+
+</div>
+
+{% endblock content %}

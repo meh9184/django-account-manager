@@ -100,7 +100,6 @@ class Home(TemplateView):
             )
 
             context={
-                'transactions': transactions_hub,
                 'transactions_recent': transactions_hub[:5],
                 'account_obj': account_obj,
                 'dep_obj': dep_obj,

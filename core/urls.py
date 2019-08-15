@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-from transactions.views import transcations_detail, transcations_summary
+from transactions.views import transcations_detail, transcations_summary, transcations_timeline
 from users.views import *
 
 urlpatterns = [
@@ -32,8 +32,7 @@ urlpatterns = [
     path('accounts/proc/<account_no>', account_proc),
     path('accounts/detail/<account_no>', account_detail),
     path('transactions/', include('transactions.urls')),
-    path('transactions/detail/', transcations_detail),
-    path('transactions/summary/', transcations_summary),
+    path('transactions/timeline/', transcations_timeline),
     path('users/', include('django.contrib.auth.urls')),
     # path('balance/',TemplateView.as_view(template_name='check_bal.htm'),name='check Bal'),
 
