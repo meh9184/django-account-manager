@@ -33,11 +33,15 @@
         width: 90%;
         font-size: 13px;
     }
-    .card-title {
-        font-size: 20px;
+    .card-title .btn{
+        padding: 10px 0px 10px 0px;
+        width: 50%;
+        font-size: 16px;
+        border-color: #c7c6c6;
     }
     .card-title a{
-        font-size: 8px;
+        font-size: 16px;
+        vertical-align: bottom;
     }
 </style>
 
@@ -72,7 +76,9 @@
                         
                         <div class="grid-item">
                             <p class="card-title">
-                                {{ account.bank }} 계좌 
+                                {% with "/accounts/proc/"|add:account.account_no as account_no %}
+                                    <a href= {{ account_no }} class="btn btn-light account">{{ account.bank }} 계좌</a>
+                                {% endwith %}
                                 <a class="card-text text-muted">{{ account.account_type }}</a>
                             </p>
                             <p class="card-text text-muted h6">{{ account.account_no }}</p>
