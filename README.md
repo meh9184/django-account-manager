@@ -107,7 +107,7 @@
 
 ### Simulation data
 >
-> - [Report implemented assignment](https://github.com/meh9184/django-account-manager#report-implemented-assignment) 파트에서 설명하는 시뮬레이션 데이터를 그대로 이어받도록 `db.sqlite3` 파일을 같이 push해 두었습니다.
+> - [Report implemented assignment](#report-implemented-assignment) 파트에서 설명하는 시뮬레이션 데이터를 그대로 이어받도록 `db.sqlite3` 파일을 같이 push해 두었습니다.
 > 
 > - 만약, Clean한 상태로 프로젝트를 시작하고 싶다면 다음과 같이 수행해주세요.
 > 
