@@ -55,6 +55,16 @@
     width: 100%;
     margin: 0px 0px 15px 0px;
   }
+  .btn-light {
+    border-color: #c7c6c6;
+  }
+  .expire {
+    background-color: rgb(211, 210, 210);
+    border-color: #a1a1a1;
+  }
+  .expire:hover, .expire:focus {
+    background-color: rgb(182, 182, 182);
+}
 </style>
 
 
@@ -104,26 +114,26 @@
                 <div style="position: absolute; bottom: 20px; right: 20px">
 
                   {% with "/accounts/detail/"|add:account.account_no as account_no %}
-                    <a href= {{ account_no }} class="btn btn-primary">조회</a>
+                    <a href= {{ account_no }} class="btn btn-primary" >조회</a>
                   {% endwith %}
 
                   {% with "/transactions/withdraw/"|add:account.account_no as account_no %}
                     {% if account.limit_daily <= 0 %}
-                      <a href= {{ account_no }} class="btn btn-danger">출금</a>
+                      <a href= '' class="btn btn-danger disabled">출금</a>
                     {% else %}
-                      <a href= {{ account_no }} class="btn btn-primary">출금</a>
+                      <a href= {{ account_no }} class="btn btn-light">출금</a>
                     {% endif %}
                   {% endwith %}
 
                   {% with "/transactions/deposit/"|add:account.account_no as account_no %}
-                    <a href= {{ account_no }} class="btn btn-primary">입금</a> 
+                    <a href= {{ account_no }} class="btn btn-light">입금</a> 
                   {% endwith %}
 
                   {% with "/transactions/transfer/"|add:account.account_no as account_no %}
-                    {% if account.daily_transfer_number == 0 %}
-                      <a href= {{ account_no }} class="btn btn-danger">이체</a>
+                    {% if account.daily_transfer_number <= 0 %}
+                      <a href= {{ account_no }} class="btn btn-light expire">이체</a>
                     {% else %}
-                      <a href= {{ account_no }} class="btn btn-primary">이체</a>
+                      <a href= {{ account_no }} class="btn btn-light">이체</a>
                     {% endif %}
                   {% endwith %}
 
