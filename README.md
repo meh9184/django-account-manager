@@ -48,9 +48,9 @@
 ### DataBase Models and Relations
 > 
 > **Database schema**
-> <kbd>
->   <img src="./screenshots/database_schema.png" alt="database_schema" width='100%'/>
-> </kbd>
+>
+> <img src="./screenshots/database_schema.png" alt="database_schema" width='80%'/>
+> 
 > 1. 하나의 사용자(User) 모델은 다수의 계좌(Account) 모델을 가질 수 있다.
 > 
 > 2. 하나의 계좌(Account) 모델은 다수의 입금(Deposit) 모델을 가질 수 있다.
@@ -140,9 +140,7 @@
 
 ### 회원 가입 / 로그인
 > 
-> <kbd>
->   <img src="./screenshots/login_signup.gif" alt="login_signup" width='100%'/>
-> </kbd>
+> <img src="./screenshots/login_signup.gif" alt="login_signup" width='80%'/>
 > 
 > - Django 프레임워크의 django.contrib.auth.model 을 사용하여 CustomUser 모델을 생성했으며
 > 
@@ -150,9 +148,7 @@
 
 ### 계좌 개설
 >
-> <kbd>
->   <img src="./screenshots/create_account.gif" alt="create_account" width='100%'/>
-> </kbd>
+> <img src="./screenshots/create_account.gif" alt="create_account" width='80%'/>
 > 
 > - 로그인후 우측 상단의 `계좌 생성` 버튼을 클릭하여 새로운 계정 생성
 > 
@@ -160,9 +156,7 @@
 
 ### 주 계좌 변경
 >
-> <kbd>
->   <img src="./screenshots/modify_main_account.gif" alt="modify_main_account" width='100%'/>
-> </kbd>
+> <img src="./screenshots/modify_main_account.gif" alt="modify_main_account" width='80%'/>
 > 
 > - 주 계좌를 변경하기 위해 우측 상단의 `주 계좌 변경` 버튼 또는 현재 주 계좌의 `주 계좌` 버튼을 클릭
 > 
@@ -172,9 +166,7 @@
 >
 > **입금 (Deposit)**
 >
-> <kbd>
->   <img src="./screenshots/deposit.gif" alt="deposit" width='100%'/>
-> </kbd>
+> <img src="./screenshots/deposit.gif" alt="deposit" width='80%'/>
 > 
 > - 메인 페이지에서 입금 하고싶은 계좌 우측 하단의 `입금` 버튼 클릭
 > 
@@ -186,9 +178,7 @@
 > 
 > **출금 (Withdraw)**
 >
-> <kbd>
->   <img src="./screenshots/withdraw.gif" alt="withdraw" width='100%'/>
-> </kbd>
+> <img src="./screenshots/withdraw.gif" alt="withdraw" width='80%'/>
 > 
 > - 메인 페이지에서 출금 하고싶은 계좌 우측 하단의 `출금` 버튼 클릭
 > 
@@ -200,9 +190,7 @@
 > 
 > **이체 (Transfer) - 자신의 계좌에 송금**
 >
-> <kbd>
->   <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='100%'/>
-> </kbd>
+> <img src="./screenshots/transfer_me.gif" alt="transfer_me" width='80%'/>
 > 
 > - 메인 페이지에서 이체 하고싶은 계좌 우측 하단의 `이체` 버튼 클릭
 > 
@@ -214,9 +202,7 @@
 > 
 > **이체 (Transfer) - 타 새용자 계좌에 송금**
 >
-> <kbd>
->   <img src="./screenshots/transfer_you.gif" alt="transfer_you" width='100%'/>
-> </kbd>
+> <img src="./screenshots/transfer_you.gif" alt="transfer_you" width='80%'/>
 > 
 > - 메인 페이지에서 이체 하고싶은 계좌 우측 하단의 `이체` 버튼 클릭
 > 
@@ -232,9 +218,7 @@
 >
 > **계좌 개수 한도**
 >
-> <kbd>
->   <img src="./screenshots/limit_account.gif" alt="limit_account" width='100%'/>
-> </kbd>
+> <img src="./screenshots/limit_account.gif" alt="limit_account" width='80%'/>
 > 
 > - `계좌 생성` 작업을 통해 계좌를 5개 이상으로 생성
 > 
@@ -244,9 +228,7 @@
 > 
 > **출금 한도**
 >
-> <kbd>
->   <img src="./screenshots/limit_withdraw.gif" alt="limit_withdraw" width='100%'/>
-> </kbd>
+> <img src="./screenshots/limit_withdraw.gif" alt="limit_withdraw" width='80%'/>
 > 
 > - 출금할 계좌의 `은행 이름` 버튼 클릭하여 상세정보 들어가서, `하루 출금 허용 잔여 금액` 확인
 >
@@ -258,9 +240,7 @@
 > 
 > **이체 수수료**
 >
-> <kbd>
->   <img src="./screenshots/transfer_commission.gif" alt="transfer_commission" width='100%'/>
-> </kbd>
+> <img src="./screenshots/transfer_commission.gif" alt="transfer_commission" width='80%'/>
 > 
 > - 이체할 계좌의 `은행 이름` 버튼 클릭하여 상세정보 들어가서, `하루 무료 계좌이체 잔여 횟수` 확인
 > 
@@ -274,9 +254,7 @@
 >
 > **특정 계좌 거래 내역 조회**
 >
-> <kbd>
->   <img src="./screenshots/account_history.gif" alt="account_history" width='100%'/>
-> </kbd>
+> <img src="./screenshots/account_history.gif" alt="account_history" width='80%'/>
 > 
 > - 거래 내역을 확인하고 싶은 계좌의 `내역 조회` 버튼을 클릭하여 입금, 출금, 이체 내역 확인
 > 
@@ -286,9 +264,7 @@
 > 
 > **모든 계좌 거래 내역 조회**
 >
-> <kbd>
->   <img src="./screenshots/account_history_all.gif" alt="account_history_all" width='100%'/>
-> </kbd>
+> <img src="./screenshots/account_history_all.gif" alt="account_history_all" width='80%'/>
 > 
 > - 우측 상단의 `조회` 버튼을 클릭하여 소지하고 있는 계좌들의 내역 확인
 > 
@@ -298,9 +274,7 @@
 > 
 > **타임라인**
 >
-> <kbd>
->   <img src="./screenshots/timeline.gif" alt="timeline" width='100%'/>
-> </kbd>
+> <img src="./screenshots/timeline.gif" alt="timeline" width='80%'/>
 > 
 > - 우측 상단의 `타임라인` 버튼을 클릭하여 하루 단위로 분리 돼있는 거래 내역 확인
 >
