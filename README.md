@@ -43,7 +43,6 @@
 > - BACKEND/FRONTEND (Djagno/Django Template)
 >   - [Python 3.6](https://www.python.org/downloads/release/python-360/)
 >   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
->   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
 >   - [Django Background Tasks 1.2.0](https://pypi.org/project/django-background-tasks/)
 > 
 
