@@ -1,7 +1,6 @@
 Django==2.2.4
 django-background-tasks==1.2.0
 django-compat==1.0.15
-pkg-resources==0.0.0
 pytz==2019.2
 six==1.12.0
 sqlparse==0.3.0
