@@ -92,11 +92,11 @@
 > ```
 > 
 > - 초기 시뮬레이션 DB에서 생성된 유저의 ID와 PW
-> 
-> |  ID |  PW |
-> | --- | --- |
-> | meh9184@naver.com |*test0000|
-> | test1234@toss.im |*test0000|
+>   
+>   |  ID |  PW |
+>   | --- | --- |
+>   | meh9184@naver.com |*test0000|
+>   | test1234@toss.im |*test0000|
 >
 > - 웹 브라우저로 접속하고, 해당 아이디로 로그인하여 시뮬레이션 데이터 확인
 >   - [http://localhost:8000/](http://localhost:8000/)
