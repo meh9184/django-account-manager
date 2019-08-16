@@ -29,7 +29,6 @@
 > 
 > - BACKEND (Djagno)
 >   - Django를 이용하여 구현
->  <br/>
 > 
 > - FRONTEND (Djagno Template)
 >   - Server-side templating engine인 Django Template을 이용하여 구현
@@ -43,7 +42,6 @@
 > - BACKEND/FRONTEND (Djagno/Django Template)
 >   - [Python 3.6](https://www.python.org/downloads/release/python-360/)
 >   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
->  <br/>
 > 
 
 ### DataBase Models and Relations
@@ -78,11 +76,11 @@
 > - virtaulenv 설치 안됐다면 apt-get으로 설치하고,
 > - virtaulenv 명령어로 현재 디렉터리에 가상환경 `venv` 생성 및 활성화
 > - Python 버전은 3.6
-> ```bash
-> $ sudo apt-get install virtualenv
-> $ virtualenv --python=python3.6 venv
-> $ source venv/bin/activate
-> ```
+>   ```bash
+>   $ sudo apt-get install virtualenv
+>   $ virtualenv --python=python3.6 venv
+>   $ source venv/bin/activate
+>   ```
 >
 > - 현재 가상 환경에 requirements.txt의 dependencies 설치
 >   ```bash
@@ -90,16 +88,16 @@
 >   ```
 >
 > - 완료됐으면 서버 실행
-> ```bash
-> $ python manage.py runserver
-> ```
+>   ```bash
+>   $ python manage.py runserver
+>   ```
 > 
 > - 초기 시뮬레이션 DB에서 생성한 테스트 User의 ID와 PW
 > 
->   |  |  ID |  PW |
+>   | Test User |  ID |  PW |
 >   | --- | --- | --- |
->   | User1 | meh9184@naver.com |*test0000|
->   | User2 | test1234@toss.im |*test0000|
+>   | 1 | meh9184@naver.com |*test0000|
+>   | 2 | test1234@toss.im |*test0000|
 >
 > - 웹 브라우저로 접속하고, 해당 아이디로 로그인하여 시뮬레이션 데이터 확인
 >   - [http://localhost:8000/](http://localhost:8000/)
@@ -132,22 +130,29 @@
 - 모든 케이스들은 순차적으로 진행되며, 해당 시뮬레이션 DB는 db.sqlite3 에 저장되어 있습니다.
 - 시뮬레이션 및 기능 설명 순서는 다음과 같습니다.
 
-> 1. [회원 가입 / 로그인](#회원-가입--로그인)
-> 2. [계좌 개설](#계좌-개설)
-> 3. [주 계좌 변경](#주-계좌-변경)
-> 4. [거래](#거래)
->   - 입금 (Deposit)
->   - 출금 (Withdraw)
->   - 이체 (Transfer) - 자신의 계좌에 송금
->   - 이체 (Transfer) - 타 새용자 계좌에 송금
-> 5. [제약 사항](#제약-사항)
->   - 계좌 개수 한도
->   - 출금 한도
->   - 이체 수수료
-> 6. [내역 조회](#내역-조회)
->   - 특정 계좌 거래 내역 조회
->   - 모든 계좌 거래 내역 조회
->   - 타임라인
+```
+1. [회원 가입 / 로그인](#회원-가입--로그인)
+
+2. [계좌 개설](#계좌-개설)
+
+3. [주 계좌 변경](#주-계좌-변경)
+
+4. [거래](#거래)
+ - 입금 (Deposit)
+ - 출금 (Withdraw)
+ - 이체 (Transfer) - 자신의 계좌에 송금
+ - 이체 (Transfer) - 타 새용자 계좌에 송금
+
+5. [제약 사항](#제약-사항)
+ - 계좌 개수 한도
+ - 출금 한도
+ - 이체 수수료
+
+6. [내역 조회](#내역-조회)
+ - 특정 계좌 거래 내역 조회
+ - 모든 계좌 거래 내역 조회
+ - 타임라인
+```
 
 ### 회원 가입 / 로그인
 > 
