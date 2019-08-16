@@ -6,9 +6,8 @@
   <img src="./screenshots/main.gif" alt="main" width='100%'/>
 </kbd>
 
-<br/>
-<br/>
-
+<br>
+<br>
 
 ## *Introduction*
 
@@ -58,8 +57,8 @@
 > 4. 하나의 계좌(Account) 모델은 다수의 이체(Trnsfer) 모델을 가질 수 있다.
 >
 
-<br/>
-
+<br>
+<br>
 
 ## *Installation*
 
@@ -122,6 +121,9 @@
 > ```bash
 > $ python manage.py runserver
 > ```
+
+<br>
+<br>
 
 ## *Report implemented assignment*
 
@@ -268,6 +270,7 @@
 > - 해당 페이지에서 각 계좌의 `은행 명` 버튼 클릭시 해당 계좌의 상세정보 페이지로 이동
 
 <br>
+<br>
 
 ## *Addition Commentary*
 
@@ -298,9 +301,7 @@
 > - [Github](https://github.com/meh9184/django-account-manager/)
 > 
 
-<br/>
-
-## *References*
+### References
 > 
 > - https://docs.djangoproject.com/ko/2.2/
 > - https://docs.microsoft.com/ko-kr/windows/wsl/install-win10
