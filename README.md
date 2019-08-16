@@ -6,9 +6,8 @@
   <img src="./screenshots/main.gif" alt="main" width='100%'/>
 </kbd>
 
-<br/>
-<br/>
-
+<br>
+<br>
 
 ## *Introduction*
 
@@ -29,9 +28,11 @@
 > 
 > - BACKEND (Djagno)
 >   - Django를 이용하여 구현
+>  <br/>
 > 
 > - FRONTEND (Djagno Template)
 >   - Server-side templating engine인 Django Template을 이용하여 구현
+>  <br/>
 > 
 > - DB (SQLite3)
 >   - SQLite3를 이용 (DB 세팅 과정 생략하기 위해)
@@ -42,6 +43,8 @@
 > - BACKEND/FRONTEND (Djagno/Django Template)
 >   - [Python 3.6](https://www.python.org/downloads/release/python-360/)
 >   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
+>   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
+>   - [Django Background Tasks 1.2.0](https://pypi.org/project/django-background-tasks/)
 > 
 
 ### DataBase Models and Relations
@@ -59,8 +62,8 @@
 > 4. 하나의 계좌(Account) 모델은 다수의 이체(Trnsfer) 모델을 가질 수 있다.
 >
 
-<br/>
-
+<br>
+<br>
 
 ## *Installation*
 
@@ -124,35 +127,37 @@
 >   $ python manage.py runserver
 >   ```
 
+<br>
+<br>
+
 ## *Report implemented assignment*
 
 - 구현한 `기능` 및 `제약사항`들을 케이스별로 시뮬레이션하며 설명드리겠습니다.
 - 모든 케이스들은 순차적으로 진행되며, 해당 시뮬레이션 DB는 db.sqlite3 에 저장되어 있습니다.
 - 시뮬레이션 및 기능 설명 순서는 다음과 같습니다.
 
-```
-1. [회원 가입 / 로그인](#회원-가입--로그인)
+> 1. [회원 가입 / 로그인](#회원-가입--로그인)
+> 
+> 2. [계좌 개설](#계좌-개설)
+> 
+> 3. [주 계좌 변경](#주-계좌-변경)
+> 
+> 4. [거래](#거래)
+>  - 입금 (Deposit)
+>  - 출금 (Withdraw)
+>  - 이체 (Transfer) - 자신의 계좌에 송금
+>  - 이체 (Transfer) - 타 새용자 계좌에 송금
+> 
+> 5. [제약 사항](#제약-사항)
+>  - 계좌 개수 한도
+>  - 출금 한도
+>  - 이체 수수료
+> 
+> 6. [내역 조회](#내역-조회)
+>  - 특정 계좌 거래 내역 조회
+>  - 모든 계좌 거래 내역 조회
+>  - 타임라인
 
-2. [계좌 개설](#계좌-개설)
-
-3. [주 계좌 변경](#주-계좌-변경)
-
-4. [거래](#거래)
- - 입금 (Deposit)
- - 출금 (Withdraw)
- - 이체 (Transfer) - 자신의 계좌에 송금
- - 이체 (Transfer) - 타 새용자 계좌에 송금
-
-5. [제약 사항](#제약-사항)
- - 계좌 개수 한도
- - 출금 한도
- - 이체 수수료
-
-6. [내역 조회](#내역-조회)
- - 특정 계좌 거래 내역 조회
- - 모든 계좌 거래 내역 조회
- - 타임라인
-```
 
 ### 회원 가입 / 로그인
 > 
@@ -299,6 +304,7 @@
 > - 해당 페이지에서 각 계좌의 `은행 명` 버튼 클릭시 해당 계좌의 상세정보 페이지로 이동
 
 <br>
+<br>
 
 ## *Addition Commentary*
 
@@ -328,9 +334,8 @@
 > - [Github](https://github.com/meh9184/django-account-manager/)
 > 
 
-<br/>
-
-## *References*
+### References
 > 
 > - https://docs.djangoproject.com/ko/2.2/
 > - https://docs.microsoft.com/ko-kr/windows/wsl/install-win10
+>
