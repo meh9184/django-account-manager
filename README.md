@@ -128,14 +128,12 @@
 >             $python manage.py ruundaemon interval 5
 >             ```
 >             <img src="./screenshots/rundaemon_interval_1.jpg" alt="rundaemon_interval_1" width='100%'/>
-> <br>
 >
 >         - EX2) 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 30
 >             ```
 >             <img src="./screenshots/rundaemon_interval_2.jpg" alt="rundaemon_interval_2" width='100%'/>
-> <br>
 >
 >     2. 특정 시간(분 단위)에 리셋 작업을 실행 
 >
@@ -147,14 +145,12 @@
 >             $python manage.py ruundaemon cron 22:33
 >             ```
 >             <img src="./screenshots/rundaemon_cron_1.jpg" alt="rundaemon_cron_1" width='100%'/>
-> <br>
 > 
 >         - EX2) 매일 정오(00시 00분) 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 00:00
 >             ```
 >             <img src="./screenshots/rundaemon_cron_2.jpg" alt="rundaemon_cron_2" width='100%'/>
-> <br>
 > 
 
 ### To start clean db status
