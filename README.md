@@ -425,9 +425,11 @@
 >
 >         - 결과 : Cron 및 Interval 옵션을 통하여 원하는 시점에 리셋 작업을 Call할 수 있었습니다.
 > 
-> - API timeout 이슈 
+> - API timeout 및 질의 최적화 관련 작업
 > 
 >     - 주어진 시간 안에 진행하지 못했습니다.
+> 
+
 
 ### Tools for Windows OS Users
 > - [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)
