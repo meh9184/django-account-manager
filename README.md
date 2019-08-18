@@ -36,21 +36,28 @@
 > <br>
 >
 > - BACKEND (Djagno)
+>
 >   - Django를 이용하여 구현
+>
 > <br>
 > 
 > - FRONTEND (Djagno Template)
+>
 >   - Server-side templating engine인 Django Template을 이용하여 구현
+>
 > <br>
 > 
 > - DB (SQLite3)
+>
 >   - SQLite3를 이용 (DB 세팅 과정 생략하기 위해)
-> 
+>
 
 ### Requirements
 
 > - BACKEND/FRONTEND (Djagno/Django Template)
+>
 >   - [Python 3.6](https://www.python.org/downloads/release/python-360/)
+>
 >   - [Django 2.2.4](https://docs.djangoproject.com/en/2.2/releases/2.2.4/)
 > 
 
@@ -394,11 +401,13 @@
 > 
 > - 하루 출금 한도 및 수수료 면제 이체 횟수 초기화 이슈
 >
->     1. django-background-tasks를 모듈을 이용하여 하루 마다 이체 한도 숫자와 출금 한도량 초기화하도록 시도했습니다.
+>     1. django-background-tasks 모듈을 통해 이체 무료 횟수 및 출금 한도량을 초기화 하고자 했습니다.
+>
 >         - 문제 : bach 실행 타이밍이 정확하게 맞아 떨어지지 않는 이슈가 발생했습니다.
 >
->         - 원인 : 개발자 커뮤니티를 통해 확인해본 결과 WSL환경에서의 django-background-tasks 모듈 버그인 것으로 추정되었습니다.
->         - 방안 : 리눅스의 crontab 명령어를 사용하는 django-cronta 모듈을 사용하고자 했습니다.
+>         - 원인 : 개발자 커뮤니티를 통해 WSL환경에서의 모듈 버그인 것으로 추정되었습니다.
+>
+>         - 방안 : 리눅스의 crontab 명령어를 사용하는 django-cronta 모듈을 사용해보기로 했습니다.
 > 
 >     2. django-crontab 모듈을 이용하여 Crontab JOB을 생성하도록 시도했습니다.
 >
@@ -406,11 +415,15 @@
 >
 >         - 원인 : 개발자 커뮤니티를 찾아본 결과 django-crontab 모듈은 리눅스의 crontab 명령어를 사용하며, 윈도우 위에 리눅스 binary를 올린 형태의 WSL 환경에서는 crontab 명령어 자체가 적용되지 않는다는 것을 확인했습니다.
 > 
->         - 방안 : crontab 명령어가 동작한다고 해도 로컬 환경에서의 배포를 고려한다면 리눅스 OS에 의존적인 엔지니어링을 지양하고자, 직접 백그라운드 데몬 프로그램을 만들고자 했습니다.
+>         - 방안 : 직접 백그라운드 데몬 프로그램을 만들기로 했습니다.
 > 
->     3. Python의 threading 모듈을 이용하여 백그라운드 프로세스를 가동시키고, Django Custom Command를 통해 DB의 업데이트 작업을 수행하도록 시도했습니다. 
+>     3. Python의 threading 모듈을 이용하여 백그라운드 프로세스를 가동시켜 DB를 컨트롤 했습니다
 >
->         - 해결 : Cron 및 Interval 옵션을 통하여 원하는 시점에 리셋 작업을 Call할 수 있었습니다.
+>         - 문제 : Django 프로젝트와 독립적인 스크립트에서는 DB에 접근할 수 없는 문제가 발생했습니다.
+>
+>         - 해결 : Django Custom Command를 만들어, 그 안에서 threading 모듈을 실행했습니다.
+>
+>         - 결과 : Cron 및 Interval 옵션을 통하여 원하는 시점에 리셋 작업을 Call할 수 있었습니다.
 > 
 > - API timeout 이슈 
 > 
