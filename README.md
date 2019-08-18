@@ -14,15 +14,25 @@
 ### Summary
 
 > - Project 소개
+>
 >   - 계좌관리 및 거래 시뮬레이션 웹 어플리케이션입니다.
+>
 >   - 사용자당 최대 5개의 계좌를 계설할 수 있으며, 주 계좌를 설정/변경할 수 있습니다.
+>
 >   - 계좌의 종류는 총 3가지 (일반/급여/적금) 존재하며, 각각의 종류마다 출금 한도가 존재합니다. 
+>
 >   - 입금 한도는 없으며, 출금 한도는 다음과 같습니다.
+>
 >     - 일반 : 1회 30만원 / 1일 30만원
+>
 >     - 급여: 1회 1,000만원 / 1일 1억원
+>
 >     - 적금: 출금 불가
+>
 >   - 계좌간 이체가 가능하며, 종류가 다른 계좌로의 이체시 수수료 500원이 부과됩니다. 
+>
 >   - 다른 종류의 계좌로 이체시 하루 3건까지는 수수료가 면제됩니다.
+>
 > <br>
 >
 > - BACKEND (Djagno)
@@ -96,7 +106,12 @@
 >   ```
 > 
 > - 하루 출금 한도 및 수수료 면제 이체 횟수 초기화 작업 위해 Background Daemon을 실행해야 함
-> - 새로운 bash 쉘을 열어 Custom Command rundaemon을 실행
+> - 새로운 bash 쉘을 열어 가상 환경 venv 실행
+>   ```bash
+>   $ source venv/bin/activate
+>   ```
+> 
+> - 가상환경 위에서 장고 Custom Command인 python mange.py rundaemon을 실행
 > - 매일 정오(12:00 PM)에 초기화 작업을 수행하고 싶다면 다음과 같이 입력
 >   ```bash
 >   $ python manage.py rundaemon cron 00:00
@@ -115,7 +130,10 @@
 
 ### Daemon Usage
 >
-> - Daemon은 Django Custom Command를 통해 구현했으며, 리눅스의 crontab 명령어를 모방 (시간 입력 포맷은 다르게 구현)
+> - Daemon은 Django Custom Command를 통해 구현
+>
+> - 리눅스의 crontab 명령어를 모방 (시간 입력 포맷은 다르게 구현)
+>
 > - **daemon 사용법**
 > 
 >     1. 현재 시간으로부터 특정 기간(분 단위)이 지나면 리셋 작업을 실행 
@@ -374,14 +392,29 @@
 
 ### Issues
 > 
-> - django-background-tasks를 사용하여 하루 마다 이체 한도 숫자와 출금 한도량 초기화하도록 구현했으나, bach 실행 타이밍이 정확하게 맞아 떨어지지 않는 이슈가 발생했습니다.
+> - 하루 출금 한도 및 수수료 면제 이체 횟수 초기화 이슈
+>
+>     1. django-background-tasks를 모듈을 이용하여 하루 마다 이체 한도 숫자와 출금 한도량 초기화하도록 시도했습니다.
+>         - 문제 : bach 실행 타이밍이 정확하게 맞아 떨어지지 않는 이슈가 발생했습니다.
+>
+>         - 원인 : 개발자 커뮤니티를 통해 확인해본 결과 WSL환경에서의 django-background-tasks 모듈 버그인 것으로 추정되었습니다.
+>         - 방안 : 리눅스의 crontab 명령어를 사용하는 django-cronta 모듈을 사용하고자 했습니다.
 > 
-> - 개발자 커뮤니티를 통해 확인해본 결과 django-background-tasks 모듈의 버그인 것으로 추정되며
+>     2. django-crontab 모듈을 이용하여 Crontab JOB을 생성하도록 시도했습니다.
+>
+>         - 문제 : Crontab 명령어가 작동하지 않는 이슈가 발생했습니다.
+>
+>         - 원인 : 개발자 커뮤니티를 찾아본 결과 django-crontab 모듈은 리눅스의 crontab 명령어를 사용하며, 윈도우 위에 리눅스 binary를 올린 형태의 WSL 환경에서는 crontab 명령어 자체가 적용되지 않는다는 것을 확인했습니다.
 > 
-> - 차선책으로 생각해낸 방안으로, MySQL의 스케쥴러를 이용하여 이체 한도 숫자와 출금 한도량을 하루 마다 초기화 하도록 구현하는 작업 중에 있습니다.
+>         - 방안 : crontab 명령어가 동작한다고 해도 로컬 환경에서의 배포를 고려한다면 리눅스 OS에 의존적인 엔지니어링을 지양하고자, 직접 백그라운드 데몬 프로그램을 만들고자 했습니다.
 > 
-> - API timeout 및 이체 처리 시간 관련 작업은 제한된 시간 안에 진행하지 못했습니다.
+>     3. Python의 threading 모듈을 이용하여 백그라운드 프로세스를 가동시키고, Django Custom Command를 통해 DB의 업데이트 작업을 수행하도록 시도했습니다. 
+>
+>         - 해결 : Cron 및 Interval 옵션을 통하여 원하는 시점에 리셋 작업을 Call할 수 있었습니다.
 > 
+> - API timeout 이슈 
+> 
+>     - 주어진 시간 안에 진행하지 못했습니다.
 
 ### Tools for Windows OS Users
 > - [WSL (Windows Subsystem for Linux)](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)
