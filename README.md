@@ -23,12 +23,15 @@
 >     - 적금: 출금 불가
 >   - 계좌간 이체가 가능하며, 종류가 다른 계좌로의 이체시 수수료 500원이 부과됩니다. 
 >   - 다른 종류의 계좌로 이체시 하루 3건까지는 수수료가 면제됩니다.
-> 
+> <br>
+>
 > - BACKEND (Djagno)
 >   - Django를 이용하여 구현
+> <br>
 > 
 > - FRONTEND (Djagno Template)
 >   - Server-side templating engine인 Django Template을 이용하여 구현
+> <br>
 > 
 > - DB (SQLite3)
 >   - SQLite3를 이용 (DB 세팅 과정 생략하기 위해)
@@ -110,38 +113,48 @@
 >   - [http://localhost:8000/](http://localhost:8000/)
 >
 
-### Damon Usage
+### Daemon Usage
 >
 > - Daemon은 Django Custom Command를 통해 구현했으며, 리눅스의 crontab 명령어를 모방 (시간 입력 포맷은 다르게 구현)
 > - **daemon 사용법**
 > 
 >     1. 현재 시간으로부터 특정 기간(분 단위)이 지나면 리셋 작업을 실행 
+>
 >         - interval 옵션과, 리셋할 간격(분 단위)을 파라미터로 입력
+>
 >         - EX1) 현재 시간으로부터 5분이 지날 때 마다 리셋 작업 실행
+>
 >             ```bash
 >             $python manage.py ruundaemon interval 5
 >             ```
->         <img src="./screenshots/rundaemon_interval_5.JPG" alt="rundaemon_interval_5" width='80%'/>
+>             <img src="./screenshots/rundaemon_interval_1.jpg" alt="rundaemon_interval_1" width='100%'/>
+> <br>
 >
 >         - EX2) 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 30
 >             ```
->         <img src="./screenshots/rundaemon_interval_30.JPG" alt="rundaemon_interval_30" width='80%'/>
+>             <img src="./screenshots/rundaemon_interval_2.jpg" alt="rundaemon_interval_2" width='100%'/>
+> <br>
 >
 >     2. 특정 시간(분 단위)에 리셋 작업을 실행 
+>
 >         - cron 옵션과, 리셋할 시간(시간:분 포맷)을 파라미터로 입력
+>
 >         - EX1) 매일 22시 33분 마다 리셋 작업 실행
+>
 >             ```bash
 >             $python manage.py ruundaemon cron 22:33
 >             ```
->         <img src="./screenshots/rundaemon_cron_22-33.JPG" alt="rundaemon_cron_22-33" width='80%'/>
+>             <img src="./screenshots/rundaemon_cron_1.jpg" alt="rundaemon_cron_1" width='100%'/>
+> <br>
 > 
 >         - EX2) 매일 정오(00시 00분) 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 00:00
 >             ```
->         <img src="./screenshots/rundaemon_cron_00-00.JPG" alt="rundaemon_cron_00-00" width='80%'/>
+>             <img src="./screenshots/rundaemon_cron_2.jpg" alt="rundaemon_cron_2" width='100%'/>
+> <br>
 > 
 
 ### To start clean db status
