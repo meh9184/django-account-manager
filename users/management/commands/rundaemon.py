@@ -9,6 +9,7 @@ import datetime, time, re, threading
 def set_interval(func, delay_time, reset_type):
     e = threading.Event()
 
+    print('Current DATETIME is', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
     print('Wating for next CRON JOB...')
 
     # 만약 cron 타입이라면
@@ -20,13 +21,15 @@ def set_interval(func, delay_time, reset_type):
         time.sleep(delay_time)
         print('\nCRON JOB has run at', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'), '!')
         func()
-        print('\nWating for next CRON JOB...')
+        print('\n\nCurrent DATETIME is', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
+        print('Wating for next CRON JOB...')
         
         # 하루 (60 * 60 * 24 초) 만큼의 delay로 set_interval 수행
         while not e.wait(60*60*24):
             print('\nCRON JOB has run at', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'), '!')
             func()
-            print('\nWating for next CRON JOB...')
+            print('\n\nCurrent DATETIME is', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
+            print('Wating for next CRON JOB...')
 
     # 만약 interval 타입이라면
     elif reset_type == 'interval':
@@ -34,7 +37,8 @@ def set_interval(func, delay_time, reset_type):
         while not e.wait(delay_time):
             print('\nCRON JOB has run at', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'), '!')
             func()
-            print('\nWating for next CRON JOB...')
+            print('\n\nCurrent DATETIME is', datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
+            print('Wating for next CRON JOB...')
 
     else:
         return
@@ -120,7 +124,7 @@ def reset_limits():
 
     # 업데이트된 데이터를 출력
     print_results(data)
-
+    
 
 class Command(BaseCommand):
     help = 'Reset Limits'

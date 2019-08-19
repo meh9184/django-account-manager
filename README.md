@@ -119,7 +119,7 @@
 >   ```
 > 
 > - 가상환경 위에서 장고 Custom Command인 python mange.py rundaemon을 실행
-> - 매일 정오(12:00 PM)에 초기화 작업을 수행하고 싶다면 다음과 같이 입력
+> - 매일 자정(12:00 PM)에 초기화 작업을 수행하고 싶다면 다음과 같이 입력
 >   ```bash
 >   $ python manage.py rundaemon cron 00:00
 >   ```
@@ -152,13 +152,13 @@
 >             ```bash
 >             $python manage.py ruundaemon interval 5
 >             ```
->             <img src="./screenshots/rundaemon_interval_1.jpg" alt="rundaemon_interval_1" width='100%'/>
+>             <img src="./screenshots/reset_interval_1.jpg" alt="rundaemon_interval_1" width='100%'/>
 >
 >         - EX2) 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 30
 >             ```
->             <img src="./screenshots/rundaemon_interval_2.jpg" alt="rundaemon_interval_2" width='100%'/>
+>             <img src="./screenshots/reset_interval_2.jpg" alt="rundaemon_interval_2" width='100%'/>
 >
 >     2. 특정 시간(분 단위)에 리셋 작업을 실행 
 >
@@ -169,13 +169,13 @@
 >             ```bash
 >             $python manage.py ruundaemon cron 22:33
 >             ```
->             <img src="./screenshots/rundaemon_cron_1.jpg" alt="rundaemon_cron_1" width='100%'/>
+>             <img src="./screenshots/reset_cron_1.jpg" alt="rundaemon_cron_1" width='100%'/>
 > 
 >         - EX2) 매일 정오(00시 00분) 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 00:00
 >             ```
->             <img src="./screenshots/rundaemon_cron_2.jpg" alt="rundaemon_cron_2" width='100%'/>
+>             <img src="./screenshots/reset_cron_2.jpg" alt="rundaemon_cron_2" width='100%'/>
 > 
 
 ### To start clean db status
@@ -200,7 +200,7 @@
 >   $ python manage.py runserver
 >   ```
 >
-> - 새로운 쉘을 열어 데몬 프로세스 실행 (리셋 시점은 매일 정오로 설정)
+> - 새로운 쉘을 열어 데몬 프로세스 실행 (리셋 시점은 매일 자정으로 설정)
 >   ```bash
 >   $ python manage.py rundaemon cron 00:00
 >   ```
