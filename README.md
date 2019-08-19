@@ -204,8 +204,10 @@
 >   $ python manage.py runserver
 >   ```
 >
-> - 새로운 쉘을 열어 데몬 프로세스 실행 (리셋 시점은 매일 자정으로 설정)
+> - 새로운 쉘을 열어 가상환경 활성화 후
+> - 데몬 프로세스 실행 (리셋 시점은 매일 자정으로 설정)
 >   ```bash
+>   $ source venv/bin/activate
 >   $ python manage.py rundaemon cron 00:00
 >   ```
 >
