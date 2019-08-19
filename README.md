@@ -149,14 +149,14 @@
 >
 >         - interval 옵션과, 리셋할 간격(분 단위)을 파라미터로 입력
 >
->         - <EX1> 현재 시간으로부터 5분이 지날 때 마다 리셋 작업 실행
+>         - EX1> 현재 시간으로부터 5분이 지날 때 마다 리셋 작업 실행
 >
 >             ```bash
 >             $python manage.py ruundaemon interval 5
 >             ```
 >             <img src="./screenshots/reset_interval_1.jpg" alt="rundaemon_interval_1" width='100%'/>
 >
->         - <EX2> 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
+>         - EX2> 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 30
 >             ```
@@ -168,14 +168,14 @@
 >
 >         - cron 옵션과, 리셋할 시간(시간:분 포맷)을 파라미터로 입력
 >
->         - <EX1> 매일 오전 11시 33분 마다 리셋 작업 실행
+>         - EX1> 매일 오전 11시 33분 마다 리셋 작업 실행
 >
 >             ```bash
 >             $python manage.py ruundaemon cron 11:53
 >             ```
 >             <img src="./screenshots/reset_cron_1.jpg" alt="rundaemon_cron_1" width='100%'/>
 > 
->         - <EX2> 매일 정오(낮 12시 00분) 마다 리셋 작업 실행
+>         - EX2> 매일 정오(낮 12시 00분) 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 12:00
 >             ```
