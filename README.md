@@ -137,7 +137,7 @@
 
 ### Daemon Usage
 >
-> - Daemon은 Django Custom Command를 통해 구현
+> - Daemon은 Python Threading 모듈 + Django Custom Command를 통해 구현
 >
 > - 리눅스의 crontab 명령어를 모방 (시간 입력 포맷은 다르게 구현)
 >
