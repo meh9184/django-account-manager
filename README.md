@@ -143,35 +143,39 @@
 >
 > - **daemon 사용법**
 > 
->     1. 현재 시간으로부터 특정 기간(분 단위)이 지나면 리셋 작업을 실행 
+>     1. Interval 옵션
+>
+>         - 현재 시간으로부터 특정 기간(분 단위)이 지나면 리셋 작업을 실행
 >
 >         - interval 옵션과, 리셋할 간격(분 단위)을 파라미터로 입력
 >
->         - EX1) 현재 시간으로부터 5분이 지날 때 마다 리셋 작업 실행
+>         - <EX1> 현재 시간으로부터 5분이 지날 때 마다 리셋 작업 실행
 >
 >             ```bash
 >             $python manage.py ruundaemon interval 5
 >             ```
 >             <img src="./screenshots/reset_interval_1.jpg" alt="rundaemon_interval_1" width='100%'/>
 >
->         - EX2) 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
+>         - <EX2> 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 30
 >             ```
 >             <img src="./screenshots/reset_interval_2.jpg" alt="rundaemon_interval_2" width='100%'/>
 >
->     2. 특정 시간(분 단위)에 리셋 작업을 실행 
+>     2. Cron 옵션
+>
+>         - 특정 시간(분 단위)에 리셋 작업을 실행 
 >
 >         - cron 옵션과, 리셋할 시간(시간:분 포맷)을 파라미터로 입력
 >
->         - EX1) 매일 오전 11시 33분 마다 리셋 작업 실행
+>         - <EX1> 매일 오전 11시 33분 마다 리셋 작업 실행
 >
 >             ```bash
 >             $python manage.py ruundaemon cron 11:53
 >             ```
 >             <img src="./screenshots/reset_cron_1.jpg" alt="rundaemon_cron_1" width='100%'/>
 > 
->         - EX2) 매일 정오(낮 12시 00분) 마다 리셋 작업 실행
+>         - <EX2> 매일 정오(낮 12시 00분) 마다 리셋 작업 실행
 >             ```bash
 >             $python manage.py ruundaemon cron 12:00
 >             ```
