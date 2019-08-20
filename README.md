@@ -158,7 +158,7 @@
 >
 >         - EX2> 현재 시간으로부터 30분이 지날 때 마다 리셋 작업 실행
 >             ```bash
->             $python manage.py ruundaemon cron 30
+>             $python manage.py ruundaemon interval 30
 >             ```
 >             <img src="./screenshots/reset_interval_2.jpg" alt="rundaemon_interval_2" width='100%'/>
 >
@@ -228,7 +228,7 @@
 >     1. 입금 (Deposit)
 >     2. 출금 (Withdraw)
 >     3. 이체 (Transfer) - 자신의 계좌에 송금
->     4. 이체 (Transfer) - 타 새용자 계좌에 송금
+>     4. 이체 (Transfer) - 타 용자 계좌에 송금
 > 5. [제약 사항](#제약-사항)
 >     1. 계좌 개수 한도
 >     2. 출금 한도
@@ -303,7 +303,7 @@
 >
 > <br>
 > 
-> **이체 (Transfer) - 타 새용자 계좌에 송금**
+> **이체 (Transfer) - 타 용자 계좌에 송금**
 >
 > <img src="./screenshots/transfer_you.gif" alt="transfer_you" width='80%'/>
 > 
